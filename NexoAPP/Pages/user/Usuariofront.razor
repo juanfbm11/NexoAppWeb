@@ -1,0 +1,239 @@
+﻿@page "/usuariofront"
+
+@using NexoAPP.Models 
+@using NexoAPP.Services
+@using Microsoft.AspNetCore.Components.Forms
+@inject UsuarioService usuarioService
+@inject NavigationManager Navigation
+
+<PageTitle>Usuario</PageTitle>
+
+
+<link href="css/usuario.css" rel="stylesheet" />
+
+<div class="container d-flex flex-column align-items-center justify-content-center vh-100">
+
+    @if (vistaActual == "inicio")
+    {
+        <!-- BOTONES PRINCIPALES -->
+        <div class="text-center">
+            <h2 class="mb-4 text-primary">Bienvenido</h2>
+            <button type="button" class="btn btn-primary me-2" @onclick="MostrarLogin">Iniciar Sesión</button>
+            <button type="button" class="btn btn-success" @onclick="MostrarRegistro">Registrarse</button>
+
+        </div>
+    }
+
+    @if(vistaActual == "login")
+    {
+    <!-- FORMULARIO LOGIN -->
+    <div class="form-card">
+        <h4 class="text-center text-primary mb-4">Iniciar Sesión</h4>
+
+            <EditForm  Model="NuevoLogin" OnValidSubmit="ManejarLogin">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <!-- correo -->
+            <div class="mb-3">
+                <label for="correo" class="form-label">Correo</label>
+                <InputText id="correo" class="form-control" @bind-Value="NuevoLogin.Correo" required />
+            </div>
+
+            <!-- contraseña -->
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <InputText id="password" class="form-control" @bind-Value="NuevoLogin.Contrasena" required />
+            </div>
+
+            <!-- botones -->
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                <button type="button" class="btn btn-secondary" @onclick="Volver">Volver</button>
+            </div>
+
+            <h5 class="text-center mt-4">Iniciar sesión con:</h5>
+            <div class="social-login">
+                <button type="button" class="btn-social google">
+                    <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" width="20" /> Google
+                </button>
+                <button type="button" class="btn-social apple">
+                    <img src="https://images.icon-icons.com/1/PNG/256/social_apple_mac_65.png" alt="Apple" width="20" /> Apple
+                </button>
+                <button type="button" class="btn-social microsoft">
+                    <img src="https://images.icon-icons.com/1488/PNG/512/5382-outlook_102516.png" alt="Microsoft" width="20" /> Microsoft
+                </button>
+            </div>
+        </EditForm>
+    </div>
+    }
+
+
+    @if (vistaActual == "registro")
+    {
+        <!-- FORMULARIO REGISTRO -->
+        <div id="registro" class="form-card">
+            <h4 class="text-center text-success mb-4">Crear cuenta</h4>
+
+            <EditForm Model="NuevoUsuario" OnValidSubmit="ManejarRegistro">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <h5 class="text-center">Registrarse con:</h5>
+                <div class="social-login">
+                    <button type="button" class="btn-social google">
+                        <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" width="20" /> Google
+                    </button>
+                    <button type="button" class="btn-social apple">
+                        <img src="https://images.icon-icons.com/1/PNG/256/social_apple_mac_65.png" alt="Apple" width="20" /> Apple
+                    </button>
+                    <button type="button" class="btn-social microsoft">
+                        <img src="https://images.icon-icons.com/1488/PNG/512/5382-outlook_102516.png" alt="Microsoft" width="20" /> Microsoft
+                    </button>
+                </div>
+
+                <!-- nombre -->
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Nombre Completo</label>
+                    <InputText id="nombre" class="form-control" @bind-Value="NuevoUsuario.Nombre" required />
+                </div>
+
+                <!-- fechanacimiento -->
+                <div class="mb-3">
+                    <label for="fechanacimiento" class="form-label">Fecha de nacimiento</label>
+                    <InputDate id="fechanacimiento" class="form-control" @bind-Value="NuevoUsuario.FechaNacimiento" required />
+                </div>
+
+                <!-- telefono -->
+                <div class="mb-3">
+                    <label for="telefono" class="form-label">Teléfono</label>
+                    <InputNumber id="telefono" class="form-control" @bind-Value="NuevoUsuario.Telefono" required />
+                </div>
+
+                <!-- direccion -->
+                <div class="mb-3">
+                    <label for="direccion" class="form-label">Dirección</label>
+                    <InputText id="direccion" class="form-control" @bind-Value="NuevoUsuario.Direccion" required />
+                </div>
+
+                <div class="mb-3">
+                    <label for="municipio" class="form-label">Municipio</label>
+@*                     <InputSelect id="municipio" class="form-select" @bind-Value="NuevoUsuario.Municipio" required>
+                        <option value="" >Seleccione un municipio</option>
+                        <option >Medellín</option>
+                        <option >Itagüí</option>
+                        <option >Sabaneta</option>
+                        <option >Envigado</option>
+                        <option >La Estrella</option>
+                        <option >Copacabana</option>
+                        <option >Barbosa</option>
+                    </InputSelect> *@
+                </div>
+
+                <!-- codigopostal -->
+                <div class="mb-3">
+                    <label for="codigopostal" class="form-label">Código Postal</label>
+                    <InputNumber id="codigopostal" class="form-control" @bind-Value="NuevoUsuario.CodigoPostal" required />
+                </div>
+
+                <!-- contraseña -->
+                <div class="mb-3">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <InputText id="contraseña" type="password" class="form-control" @bind-Value="NuevoUsuario.Contrasena" required />
+                </div>
+
+                <!-- correo electrónico -->
+                <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico</label>
+                    <InputText type="email" id="email" class="form-control" @bind-value="NuevoUsuario.Correo" required />
+                </div>
+
+                <!-- botones -->
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-success">Registrarse</button>
+                    <button type="button" class="btn btn-secondary" @onclick="Volver">Volver</button>
+                </div>
+            </EditForm>
+        </div>
+            }
+ </div>
+
+
+
+@code {
+
+    private Usuario NuevoUsuario = new();
+    private Login NuevoLogin = new();
+    private List<Usuario> usuarios = new();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        //usuarios = await usuarioService.GetAllAsync();
+        vistaActual = "inicio";
+    }
+
+    private string vistaActual = "inicio";
+
+    // ===== MÉTODOS DE NAVEGACIÓN =====
+    private void MostrarLogin()
+    {
+        vistaActual = "login";
+        StateHasChanged();
+    }
+
+    private void MostrarRegistro()
+    {
+        vistaActual = "registro";
+        StateHasChanged();
+    }
+
+    private void Volver()
+    {
+        vistaActual = "inicio";
+        StateHasChanged();
+    }
+
+    private async Task ManejarRegistro()
+    {
+        try
+        {   var success =await usuarioService.CreateAsync(NuevoUsuario);
+            if (success)
+            {
+                NuevoUsuario = new Usuario();
+                Volver();
+
+            }
+            else
+            {
+                Console.WriteLine("Error al registrar el usuario.");
+                
+            }            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al registrar: {ex.Message}");
+        }
+    }
+
+    // ===== MANEJO DE LOGIN =====
+    private async Task ManejarLogin()
+    {
+        try
+        {
+            var usuario = await usuarioService.LoginAsync(NuevoLogin.Correo , NuevoLogin.Contrasena);
+            if (usuario != null)
+            {
+                Navigation.NavigateTo("/");
+            }
+            else
+            {
+                Console.WriteLine("Credenciales inválidas.");
+            }
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
+        }
+    }
+}
