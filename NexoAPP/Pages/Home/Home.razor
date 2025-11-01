@@ -1,0 +1,61 @@
+﻿@page "/"
+
+<link href="css/Home.css" rel="stylesheet" />
+
+<div class="hero-section">
+    <div class="hero-content">
+        <h1>Bienvenido a <span>NEXO</span></h1>
+        <p>Explora productos únicos con estilo, calidad y precio justo, diseñados para destacar.</p>
+        <a href="#productos" class="btn-explore">Explorar colección</a>
+    </div>
+    <img src="/css/IMAGENES/banner.png" alt="Banner NEXO" class="hero-image" />
+</div>
+
+<section id="productos" class="products-section">
+    <h2>Productos destacados</h2>
+
+    <div class="products-grid">
+        @foreach (var producto in productos)
+        {
+            <div class="product-card">
+                <img src="@producto.Imagenes.First()" alt="@producto.Nombre" class="product-img" />
+                <div class="product-info">
+                    <h3>@producto.Nombre</h3>
+                    <p>@producto.Descripcion</p>
+                    <div class="product-footer">
+                        <span class="price">$@producto.Precio.ToString("N0")</span>
+                        <button class="btn-add" @onclick="() => AgregarAlCarrito(producto)">
+                            Agregar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    // Definición de la clase Producto
+    public class Producto
+    {
+        public string Nombre { get; set; } = "";
+        public string Descripcion { get; set; } = "";
+        public decimal Precio { get; set; }
+        public List<string> Imagenes { get; set; } = new();
+    }
+
+    // Inicialización de la lista de productos
+    private List<Producto> productos = new()
+    {
+        new Producto { Nombre = "Camiseta NEXO", Descripcion = "Camiseta de algodón premium con el logo de NEXO. Ideal para tu estilo urbano.", Precio = 49900, Imagenes = new() { "/css/IMAGENES/camiseta1.jpg" } },
+        new Producto { Nombre = "Gorra NEXO", Descripcion = "Gorra ajustable, cómoda y moderna. El accesorio que marca la diferencia.", Precio = 35900, Imagenes = new() { "/css/IMAGENES/gorra1.jpg" } },
+        new Producto { Nombre = "Taza NEXO", Descripcion = "Taza cerámica blanca con diseño exclusivo. Perfecta para tus bebidas favoritas.", Precio = 29900, Imagenes = new() { "/css/IMAGENES/taza1.jpg" } },
+        new Producto { Nombre = "Hoodie NEXO", Descripcion = "Buzo con capucha de tela suave y detalles minimalistas, ideal para el día a día.", Precio = 89900, Imagenes = new() { "/css/IMAGENES/hoodie1.jpg" } }
+    };
+
+    // Método para agregar al carrito
+    private void AgregarAlCarrito(Producto producto)
+    {
+        Console.WriteLine($"🛒 Producto agregado al carrito: {producto.Nombre}");
+    }
+}

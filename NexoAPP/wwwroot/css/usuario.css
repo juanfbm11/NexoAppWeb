@@ -12,15 +12,17 @@ body login registro {
 }
 
 /* Contenedor principal */
-.container {
+/**/
+.usuario-page .container {
     max-width: 500px;
     width: 100%;
     padding: 20px;
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    text-align: center; /* Centra el texto en el contenedor */
+    text-align: center;
 }
+
 
 /* Estilos de encabezados */
 h2, h4, h5 {

@@ -1,0 +1,197 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    /* Fondo oscuro para la sensación urbana y de alto contraste */
+    background-color: #111;
+    color: #fff; /* Color de texto base blanco */
+}
+
+/* HERO SECTION - Dominantemente Oscuro */
+.hero-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    /* Fondo con un sutil degradado a negro */
+    background: linear-gradient(135deg, #1f1f1f, #000000);
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1); /* Sombra con toque amarillo */
+    gap: 50px;
+    color: #fff;
+    border-bottom: 5px solid #FFD700;
+}
+
+.hero-content {
+    max-width: 550px;
+}
+
+    .hero-content h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #fff;
+        line-height: 1.1;
+        text-transform: uppercase;
+    }
+
+        .hero-content h1 span {
+            /* El acento amarillo brillante */
+            color: #FFD700;
+            background-color: transparent;
+            /* Efecto de "doble subrayado" moderno */
+            border-bottom: 6px double #FFD700;
+            padding-bottom: 5px;
+        }
+
+    .hero-content p {
+        font-size: 1.2rem;
+        margin: 25px 0;
+        color: #bbb;
+    }
+
+.btn-explore {
+    /* Botón impactante con el acento amarillo */
+    background-color: #FFD700;
+    color: #111; /* Texto oscuro sobre fondo amarillo */
+    padding: 15px 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    /* Sombra de acento para que "flote" */
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+    .btn-explore:hover {
+        background-color: #ffe84d;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+    }
+
+.hero-image {
+    width: 450px;
+    border-radius: 15px;
+    /* Sombra fuerte sobre el fondo oscuro */
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* PRODUCT SECTION */
+.products-section {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #111; /* Asegurar que la sección también sea oscura */
+}
+
+    .products-section h2 {
+        font-size: 2.8rem;
+        font-weight: 800;
+        margin-bottom: 50px;
+        color: #fff;
+    }
+
+        .products-section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background-color: #FFD700;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* PRODUCT CARD - Tarjeta Oscura con Detalles Amarillos */
+.product-card {
+    background-color: #1f1f1f; /* Tarjeta gris oscuro */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #333; /* Borde sutil */
+    display: flex;
+    flex-direction: column;
+}
+
+    .product-card:hover {
+        transform: scale(1.03); /* Efecto de escala */
+        box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px #FFD700; /* Efecto de "brillo neón" */
+        border: 1px solid #FFD700;
+    }
+
+.product-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    opacity: 0.85; /* Oscurecer un poco la imagen para el look cohesivo */
+    transition: opacity 0.3s;
+}
+
+.product-card:hover .product-img {
+    opacity: 1;
+}
+
+
+.product-info {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+    .product-info h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #FFD700; /* Título en amarillo */
+        margin-bottom: 8px;
+    }
+
+    .product-info p {
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
+    }
+
+.product-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+}
+
+.price {
+    font-weight: 800;
+    color: #fff; /* Precio blanco para contraste en la tarjeta oscura */
+    font-size: 1.4rem;
+}
+
+.btn-add {
+    /* Botón de carrito de color de acento */
+    background-color: #FFD700;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    color: #111; /* Texto oscuro en botón amarillo */
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .btn-add:hover {
+        background-color: #fff; /* Hover a blanco/gris claro */
+        transform: translateY(-2px);
+        box-shadow: 0 0 10px #FFD700;
+    }
