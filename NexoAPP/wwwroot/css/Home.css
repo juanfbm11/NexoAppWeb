@@ -1,0 +1,254 @@
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #111; 
+    color: #fff;
+}
+
+/* SECCIÓN PRINCIPAL */
+.Home {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+    background: linear-gradient(135deg, #1f1f1f, #000000);
+    border-radius: 0 0 40px 40px;
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
+    gap: 50px;
+    border-bottom: 5px solid #FFD700;
+}
+
+.home-content {
+    max-width: 550px;
+}
+
+    .home-content h1 {
+        font-size: 3.5rem;
+        font-weight: 900;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+        .home-content h1 span {
+            color: #FFD700;
+            border-bottom: 6px double #FFD700;
+            padding-bottom: 5px;
+        }
+
+    .home-content p {
+        font-size: 1.2rem;
+        margin: 25px 0;
+        color: #bbb;
+    }
+
+.btn-explorar {
+    background-color: #FFD700;
+    color: #111;
+    padding: 15px 40px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 800;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+    .btn-explorar:hover {
+        background-color: #ffe84d;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+    }
+
+.home-img {
+    width: 450px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+/* SECCIÓN DE PRODUCTOS */
+.productos {
+    padding: 80px 20px;
+    text-align: center;
+    background-color: #111;
+}
+
+.productos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+    .productos-header h2 {
+        font-size: 2.8rem;
+        font-weight: 800;
+        color: #fff;
+    }
+
+        .productos-header h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background-color: #FFD700;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+.btn-nuevo {
+    background-color: #FFD700;
+    color: #111;
+    padding: 12px 25px;
+    border-radius: 5px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+}
+
+    .btn-nuevo:hover {
+        background-color: #fff;
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+    }
+
+/* GRID DE PRODUCTOS */
+.grid-productos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* TARJETAS DE PRODUCTO */
+.card-producto {
+    background-color: #1f1f1f;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid #333;
+    display: flex;
+    flex-direction: column;
+}
+
+    .card-producto:hover {
+        transform: scale(1.03);
+        box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px #FFD700;
+        border: 1px solid #FFD700;
+    }
+
+.img-container {
+    background-color: #111;
+    text-align: center;
+    padding: 1rem;
+}
+
+    .img-container img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        opacity: 0.85;
+        transition: opacity 0.3s;
+    }
+
+.card-producto:hover .img-container img {
+    opacity: 1;
+}
+
+/* INFORMACIÓN DEL PRODUCTO */
+.info {
+    padding: 25px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+    .info h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #FFD700;
+        margin-bottom: 8px;
+    }
+
+.descripcion {
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    height: 45px;
+    overflow: hidden;
+}
+
+.precio-boton {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+}
+
+.precio {
+    font-weight: 800;
+    color: #fff;
+    font-size: 1.4rem;
+}
+
+.btn-agregar {
+    background-color: #FFD700;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    color: #111;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+    .btn-agregar:hover {
+        background-color: #fff;
+        transform: translateY(-2px);
+        box-shadow: 0 0 10px #FFD700;
+    }
+
+/* ESTADOS */
+.loading, .empty {
+    text-align: center;
+    color: #bbb;
+    font-size: 1.1rem;
+    padding: 2rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+    .Home {
+        flex-direction: column;
+        text-align: center;
+        padding: 60px 20px;
+    }
+
+    .home-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .home-img {
+        width: 100%;
+        max-width: 380px;
+    }
+
+    .productos-header {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .productos {
+        padding: 60px 15px;
+    }
+}

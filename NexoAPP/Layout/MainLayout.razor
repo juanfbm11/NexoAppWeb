@@ -1,3 +1,115 @@
 ﻿@inherits LayoutComponentBase
 
-@Body
+
+<nav class="navbar navbar-dark bg-dark fixed-top shadow-sm">
+    <div class="container-fluid">
+
+        <!-- Logo NEXO -->
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="/css/IMAGENES/Logo_NEXO.png" alt="Logo NEXO" width="40" height="40" class="me-2">
+            <span class="fw-bold text-warning">NEXO</span>
+        </a>
+
+        <!-- Botones de sesión -->
+        <div class="d-flex align-items-center">
+            <a href="#" class="btn btn-outline-warning me-2">Iniciar sesión</a>
+            <a href="#" class="btn btn-warning text-dark me-3">Crear cuenta</a>
+
+            <!-- Botón para abrir el menú lateral -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+
+        <!-- Menú lateral (offcanvas) -->
+        <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar"
+             aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title fw-bold text-warning" id="offcanvasNavbarLabel">MENU</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Productos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Pedidos</a>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-warning text-dark w-100 mt-3" type="button" data-bs-toggle="offcanvas"
+                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            🛒 Ver Carrito
+                        </button>
+                    </li>
+                </ul>
+
+                <!-- Buscador -->
+                <form class="d-flex mt-3" role="search">
+                    <input class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
+                    <button class="btn btn-outline-warning" type="submit">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+
+<div>
+    @Body
+   
+</div>
+
+
+
+
+
+
+
+
+<footer class="bg-dark text-light text-center py-4 mt-auto shadow-lg">
+    <div class="container">
+        <div class="row align-items-center">
+
+            <!-- Logo -->
+            <div class="col-md-4 mb-3 mb-md-0 d-flex justify-content-center align-items-center">
+                <img src="/css/IMAGENES/Logo_NEXO.png" alt="Logo NEXO" width="40" height="40" class="me-2">
+                <span class="fw-bold text-warning">NEXO</span>
+            </div>
+
+            <!-- Enlaces rápidos -->
+            <div class="col-md-4 mb-3 mb-md-0">
+                <a href="#" class="text-light text-decoration-none mx-2">Inicio</a> |
+                <a href="#" class="text-light text-decoration-none mx-2">Productos</a> |
+                <a href="#" class="text-light text-decoration-none mx-2">Contacto</a>
+            </div>
+
+            <!-- Redes sociales -->
+            <div class="col-md-4">
+                <a href="#" class="text-light mx-2"><i class="bi bi-facebook fs-5"></i></a>
+                <a href="#" class="text-light mx-2"><i class="bi bi-instagram fs-5"></i></a>
+                <a href="#" class="text-light mx-2"><i class="bi bi-twitter-x fs-5"></i></a>
+            </div>
+        </div>
+
+        <hr class="border-secondary my-3">
+
+        <p class="mb-0 small text-secondary">
+            &copy; 2025 <span class="text-warning fw-bold">NEXO</span> - Todos los derechos reservados.
+        </p>
+    </div>
+</footer>

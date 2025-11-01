@@ -1,0 +1,75 @@
+﻿@page "/"
+@using NexoAPP.Models
+@using NexoAPP.Services
+@inject ProductoService Service
+
+<link href="css/Home.css" rel="stylesheet" />
+
+<div class="Home">
+    <div class="home-content">
+        <h1><span class="marca">NEXO</span>  Conecta con lo mejor</h1>
+        <p>Explora productos únicos con estilo, tecnología y precio justo.</p>
+        <a href="#productos" class="btn-explorar">Explorar ahora</a>
+    </div>
+    <img src="/css/IMAGENES/Imagen.png" alt="Banner NEXO" class="home-img" />
+</div>
+
+<section id="productos" class="productos">
+    <div class="productos-header">
+        <h2>Productos destacados</h2>
+        <a class="btn-nuevo" href="/Home/CrearProducto">+ Añadir producto</a>
+    </div>
+
+    @if (productos is null)
+    {
+        <p class="loading">Cargando productos...</p>
+    }
+    else if (!productos.Any())
+    {
+        <p class="empty">No hay productos disponibles.</p>
+    }
+    else
+    {
+        <div class="grid-productos">
+            @foreach (var producto in productos)
+            {
+                <div class="card-producto">
+                    <div class="img-container">
+                        <img src="@producto.Imagen" alt="@producto.Nombre" />
+                    </div>
+                    <div class="info">
+                        <h3>@producto.Nombre</h3>
+                        <p class="descripcion">@producto.Descripcion</p>
+                        <div class="precio-boton">
+                            <span class="precio">$@producto.Precio.ToString("N0")</span>
+                            <button class="btn-agregar" @onclick="() => AgregarAlCarrito(producto)">
+                                Agregar 🛒
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</section>
+
+@code {
+    private List<Producto>? productos;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            productos = await Service.GetAllAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al cargar productos: {ex.Message}");
+        }
+    }
+
+    private void AgregarAlCarrito(Producto producto)
+    {
+        Console.WriteLine($"🛒 Producto agregado al carrito: {producto.Nombre}");
+    }
+}
