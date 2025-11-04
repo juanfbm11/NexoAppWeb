@@ -1,7 +1,8 @@
 body {
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    background-color: #111; 
+    /* Fondo oscuro para la sensación urbana y de alto contraste */
+    background-color: #111;
     color: #fff;
 }
 
@@ -12,10 +13,12 @@ body {
     align-items: center;
     justify-content: center;
     padding: 80px 40px;
+    /* Fondo con un sutil degradado a negro */
     background: linear-gradient(135deg, #1f1f1f, #000000);
     border-radius: 0 0 40px 40px;
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
     gap: 50px;
+    color: #fff;
     border-bottom: 5px solid #FFD700;
 }
 
@@ -27,11 +30,14 @@ body {
         font-size: 3.5rem;
         font-weight: 900;
         color: #fff;
+        line-height: 1.1;
         text-transform: uppercase;
     }
 
         .home-content h1 span {
             color: #FFD700;
+            background-color: transparent;
+            /* Efecto de "doble subrayado" moderno */
             border-bottom: 6px double #FFD700;
             padding-bottom: 5px;
         }
@@ -51,6 +57,7 @@ body {
     font-weight: 800;
     letter-spacing: 1px;
     transition: all 0.3s;
+    /* Sombra de acento para que "flote" */
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
@@ -63,6 +70,7 @@ body {
 .home-img {
     width: 450px;
     border-radius: 15px;
+    /* Sombra fuerte sobre el fondo oscuro */
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
@@ -84,6 +92,7 @@ body {
     .productos-header h2 {
         font-size: 2.8rem;
         font-weight: 800;
+        margin-bottom: 50px;
         color: #fff;
     }
 
@@ -148,12 +157,12 @@ body {
 }
 
     .img-container img {
-        width: 100%;
-        height: 250px;
-        object-fit: cover;
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
         opacity: 0.85;
-        transition: opacity 0.3s;
-    }
+    transition: opacity 0.3s;
+}
 
 .card-producto:hover .img-container img {
     opacity: 1;
@@ -177,12 +186,12 @@ body {
     }
 
 .descripcion {
-    color: #999;
-    font-size: 0.9rem;
-    margin-bottom: 20px;
+        color: #999;
+        font-size: 0.9rem;
+        margin-bottom: 20px;
     height: 45px;
     overflow: hidden;
-}
+    }
 
 .precio-boton {
     display: flex;
