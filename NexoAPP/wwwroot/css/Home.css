@@ -1,9 +1,27 @@
-body {
+html, body {
+    height:100%;
     margin: 0;
     font-family: 'Poppins', sans-serif;
     /* Fondo oscuro para la sensación urbana y de alto contraste */
     background-color: #111;
     color: #fff;
+}
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Hace que ocupe toda la pantalla */
+}
+
+.main-content {
+    flex: 1; /* Empuja el footer hacia abajo */
+    
+}
+
+footer {
+    background-color: #222; /* color de fondo del footer */
+    color: white;
+    text-align:left;
+    padding: 10px ;
 }
 
 /* SECCIÓN PRINCIPAL */
