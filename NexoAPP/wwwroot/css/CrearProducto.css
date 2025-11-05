@@ -1,0 +1,71 @@
+.crearproducto-container {
+    background-color: #f9fafb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+}
+
+.crearproducto-card {
+    background-color: #ffffff;
+    border-radius: 18px;
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 680px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .crearproducto-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+    }
+
+.form-label {
+    font-weight: 600;
+    color: #333;
+}
+
+.form-control,
+.form-select {
+    border-radius: 12px;
+    padding: 0.7rem 0.9rem;
+    border: 1px solid #d2d2d2;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+    .form-control:focus,
+    .form-select:focus {
+        border-color: #ffc107;
+        box-shadow: 0 0 0 0.15rem rgba(255, 193, 7, 0.25);
+    }
+
+.img-preview {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid #eee;
+    margin-top: 0.5rem;
+    transition: transform 0.3s;
+}
+
+    .img-preview:hover {
+        transform: scale(1.03);
+    }
+
+.btn-save {
+    background-color: #ffc107;
+    border: none;
+    color: #000;
+    font-size: 1.05rem;
+    transition: all 0.2s ease;
+    border-radius: 10px;
+    padding: 0.7rem;
+}
+
+    .btn-save:hover {
+        background-color: #ffb300;
+        transform: translateY(-1px);
+    }

@@ -1,0 +1,101 @@
+﻿@page "/Home/CrearProducto"
+@using NexoAPP.Models
+@using NexoAPP.Services
+@inject ProductoService Service
+@inject NavigationManager Navigation
+
+<link href="css/CrearProducto.css" rel="stylesheet" />
+
+<div class="crearproducto-container">
+    <div class="crearproducto-card shadow">
+        <h2 class="text-center mb-3 fw-bold">🛍️ Agregar nuevo producto</h2>
+        <p class="text-center text-muted mb-4">
+            Completa los datos para publicar tu producto en la tienda
+        </p>
+
+        <EditForm Model="@nuevoProducto" OnValidSubmit="GuardarProducto">
+            <DataAnnotationsValidator />
+            <ValidationSummary />
+
+            <div class="row g-3">
+                <div class="col-12">
+                    <label class="form-label">Nombre del producto</label>
+                    <InputText class="form-control" placeholder="Ej: Camiseta oversize negra" @bind-Value="nuevoProducto.Nombre" />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Descripción</label>
+                    <InputTextArea class="form-control" placeholder="Ej: Camiseta de algodón suave con logo bordado..."
+                                   @bind-Value="nuevoProducto.Descripcion" rows="3" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Precio (COP)</label>
+                    <InputNumber class="form-control" @bind-Value="nuevoProducto.Precio" />
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label">Cantidad disponible</label>
+                    <InputNumber class="form-control" @bind-Value="nuevoProducto.Cantidad" />
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">Categoría</label>
+                    <InputSelect class="form-select" @bind-Value="nuevoProducto.IdCategoria">
+                        <option value="">Selecciona una categoría</option>
+                        <option value="1">Ropa</option>
+                        <option value="2">Calzado</option>
+                        <option value="3">Accesorios</option>
+                        <option value="4">Tecnología</option>
+                        <option value="5">Hogar</option>
+                        <option value="6">Belleza</option>
+                        <option value="7">Deportes</option>
+                        <option value="8">Juguetes</option>
+                        <option value="9">Mascotas</option>
+                        <option value="10">Otros</option>
+                    </InputSelect>
+                </div>
+
+                <div class="col-12">
+                    <label class="form-label">URL de imagen</label>
+                    <InputText class="form-control" placeholder="https://..." @bind-Value="nuevoProducto.Imagen" />
+                </div>
+
+                @if (!string.IsNullOrWhiteSpace(nuevoProducto.Imagen))
+                {
+                    <div class="col-12 text-center mt-2">
+                        <img src="@nuevoProducto.Imagen" alt="Vista previa" class="img-preview shadow-sm" />
+                    </div>
+                }
+
+                <div class="col-12 mt-3">
+                    <button class="btn btn-warning w-100 fw-semibold btn-save" type="submit">
+                        <i class="bi bi-plus-circle"></i> Guardar producto
+                    </button>
+                </div>
+            </div>
+        </EditForm>
+
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-secondary btn-sm">← Volver al inicio</a>
+        </div>
+    </div>
+</div>
+
+@code {
+    private Producto nuevoProducto = new Producto();
+
+    private async Task GuardarProducto()
+    {
+        try
+        {
+            await Service.CrearProductoAsync(nuevoProducto);
+            Console.WriteLine($"✅ Producto creado: {nuevoProducto.Nombre}");
+            Navigation.NavigateTo("/", true); // Recarga el home
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error al guardar producto: {ex.Message}");
+        }
+    }
+}
