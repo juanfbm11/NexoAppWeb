@@ -53,9 +53,13 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 
+<<<<<<< Updated upstream
 # Visual Studio cache folders
 .vs/
 *.user
 *.suo
 *.userosscache
 *.sln.docstates
+=======
+.vs/
+>>>>>>> Stashed changes

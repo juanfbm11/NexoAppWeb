@@ -1,13 +1,20 @@
 ﻿
+<<<<<<< Updated upstream
 .usuario-page {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
+=======
+body {
+>>>>>>> Stashed changes
     margin: 0;
     padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f8f9fa;
     display: flex;
     flex-direction: column; /* importante */
     align-items: center;
     justify-content: center;
+<<<<<<< Updated upstream
     min-height: 100vh;
 }
 
@@ -52,6 +59,167 @@
     .usuario-page .btn-secondary {
         background-color: #6c757d;
         color: white;
+=======
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+/* ===== CONTENEDOR GENERAL ===== */
+.usuario-wrapper {
+    display: flex;    
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: #f8f9fa;
+    padding: 20px;
+}
+
+/* ===== PANTALLA DE INICIO ===== */
+.inicio-container {
+    background: white;
+    border-radius: 12px;
+    padding: 40px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.titulo-principal {
+    color: #007bff;
+    margin-bottom: 25px;
+}
+
+.botones-inicio {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* ===== TARJETAS DE FORMULARIO ===== */
+.form-card {
+    
+    background: white;
+    padding: 35px 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 450px;
+    width: 100%;
+    box-sizing:border-box;
+}
+
+.titulo-form {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+}
+
+/* ===== CAMPOS ===== */
+.form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+    .form-group label {
+        font-weight: 600;
+        margin-bottom: 5px;
+        display: block;
+    }
+
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+/* ===== BOTONES ===== */
+.form-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* ===== BOTONES SOCIALES ===== */
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 0.9rem;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .btn-social img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .btn-social.google {
+        background-color: #db4437;
+    }
+
+    .btn-social.apple {
+        background-color: #000;
+        color: white;
+    }
+
+    .btn-social.microsoft {
+        background-color: #0078d4;
+    }
+
+    .btn-social:hover {
+        opacity: 0.85;
+>>>>>>> Stashed changes
     }
 
     .usuario-page .btn-primary:hover {

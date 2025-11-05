@@ -10,6 +10,8 @@
 
 
 <link href="css/usuario.css" rel="stylesheet" />
+<body>
+
 
 <div class="usuario-page d-flex flex-column align-items-center justify-content-center py-5">
 
@@ -87,6 +89,7 @@
     @if (vistaActual == "registro")
     {
         <!-- FORMULARIO REGISTRO -->
+     <div class="container">        
         <div id="registro" class="form-card">
             <h4 class="text-center text-success mb-4">Crear cuenta</h4>
 
@@ -133,7 +136,7 @@
 
                 <div class="mb-3">
                     <label for="municipio" class="form-label">Municipio</label>
-@*                     <InputSelect id="municipio" class="form-select" @bind-Value="NuevoUsuario.Municipio" required>
+                  <InputSelect id="municipio" class="form-select" @bind-Value="NuevoUsuario.Municipio" required>
                         <option value="" >Seleccione un municipio</option>
                         <option >Medellín</option>
                         <option >Itagüí</option>
@@ -142,7 +145,7 @@
                         <option >La Estrella</option>
                         <option >Copacabana</option>
                         <option >Barbosa</option>
-                    </InputSelect> *@
+                    </InputSelect> 
                 </div>
 
                 <!-- codigopostal -->
@@ -170,9 +173,12 @@
                 </div>
             </EditForm>
         </div>
+     </div>
             }
+
  </div>
 
+</body>
 
 
 @code {
@@ -184,7 +190,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        //usuarios = await usuarioService.GetAllAsync();
+        usuarios = await usuarioService.GetAllAsync();
         vistaActual = "inicio";
     }
 
