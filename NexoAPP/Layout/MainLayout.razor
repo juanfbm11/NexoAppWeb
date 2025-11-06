@@ -14,9 +14,8 @@
 
         <!-- Botones de sesión -->
         <div class="d-flex align-items-center">
-            <a href="#" class="btn btn-outline-warning me-2">Iniciar sesión</a>
-            <a href="#" class="btn btn-warning text-dark me-3">Crear cuenta</a>
-
+            <button class="btn btn-outline-warning me-2" @onclick="() => IrUsuarioFront()">Iniciar sesion</button>
+            <button class="btn btn-warning text-dark me-3" @onclick="IrUsuarioFront">Crear cuenta</button>
             <!-- Botón para abrir el menú lateral -->
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
                     data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar"
@@ -116,9 +115,13 @@
     </div>
 </footer>
 
-
 @code {
+    [Inject]
+    NavigationManager Navigation { get; set; }
 
+    private void IrUsuarioFront() 
+    { Navigation.NavigateTo("/Usuariofront");
+    } 
 }
 
 
