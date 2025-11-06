@@ -1,0 +1,47 @@
+.pago-container {
+    margin-top: 100px;
+}
+
+.pago-logo {
+    width: 60px;
+    height: 60px;
+}
+
+.pago-card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+}
+
+.pago-item {
+    background-color: #1a1a1a;
+    color: #fff;
+    border: none;
+}
+
+.pago-input {
+    background-color: #444;
+    color: #fff;
+    border: none;
+}
+
+    .pago-input::placeholder {
+        color: #ccc;
+    }
+
+.pago-radio {
+    accent-color: #ffc107; /* color amarillo de Bootstrap */
+}
+
+.pago-btn {
+    transition: transform 0.2s ease-in-out;
+}
+
+    .pago-btn:hover {
+        transform: scale(1.02);
+    }
+
+@media (max-width: 768px) {
+    .pago-container {
+        margin-top: 70px;
+    }
+}

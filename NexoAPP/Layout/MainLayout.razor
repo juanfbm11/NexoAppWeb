@@ -45,13 +45,10 @@
                         <a class="nav-link" href="#">Categorías</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Pedidos</a>
+                        <button class="nav-link" @onclick="IrPedido">Pedidos</button>
                     </li>
                     <li class="nav-item">
-                        <button class="btn btn-warning text-dark w-100 mt-3" type="button" data-bs-toggle="offcanvas"
-                                data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
-                            🛒 Ver Carrito
-                        </button>
+                        <button class="btn btn-warning text-dark w-100 mt-3" @onclick="IrCarrito">🛒 Ver Carrito</button>
                     </li>
                 </ul>
 
@@ -119,9 +116,17 @@
     [Inject]
     NavigationManager Navigation { get; set; }
 
-    private void IrUsuarioFront() 
-    { Navigation.NavigateTo("/Usuariofront");
+    private void IrUsuarioFront() { 
+
+        Navigation.NavigateTo("/Usuariofront");
+
     } 
+    private void IrCarrito(){
+        Navigation.NavigateTo("/Carrito");
+    }
+    private void IrPedido()
+    {
+        Navigation.NavigateTo("/Pedido");
 }
 
-
+}

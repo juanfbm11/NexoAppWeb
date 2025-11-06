@@ -1,36 +1,39 @@
 ﻿@page "/Pago"
 
-<div class="container my-5" style="margin-top:100px;">
+<link href="css/pago.css" rel="stylesheet" />
+
+
+<div class="container pago-container">
     <div class="row justify-content-center">
         <div class="col-lg-8 col-md-10">
 
             <!-- Título -->
             <div class="text-center mb-4">
-                <img src="/css/IMAGENES/Logo_NEXO.png" alt="Logo NEXO" width="60" height="60" class="mb-2" />
+                <img src="/css/IMAGENES/Logo_NEXO.png" alt="Logo NEXO" class="pago-logo mb-2" />
                 <h3 class="fw-bold text-warning">Finalizar Compra</h3>
                 <p class="text-light-50">Completa tus datos y selecciona tu método de pago</p>
             </div>
 
             <!-- Contenedor principal -->
-            <div class="card bg-dark text-light shadow-lg border-0">
+            <div class="card pago-card bg-dark text-light shadow-lg border-0">
                 <div class="card-body p-4">
 
                     <!-- Resumen del pedido -->
                     <h5 class="fw-bold text-warning mb-3">Resumen del Pedido</h5>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
+                        <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
                             Audífonos Bluetooth
                             <span class="text-warning">$120.000</span>
                         </li>
-                        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
+                        <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
                             Camiseta NEXO Edition
                             <span class="text-warning">$85.000</span>
                         </li>
-                        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center">
+                        <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
                             Envío
                             <span class="text-warning">$10.000</span>
                         </li>
-                        <li class="list-group-item bg-dark text-light d-flex justify-content-between align-items-center fw-bold border-warning">
+                        <li class="list-group-item pago-item fw-bold border-warning d-flex justify-content-between align-items-center">
                             Total
                             <span class="text-success">$215.000</span>
                         </li>
@@ -42,53 +45,53 @@
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="nombre" class="form-label">Nombre completo</label>
-                                <input type="text" id="nombre" class="form-control bg-secondary text-light border-0" placeholder="Ej. Juan Pérez" required>
+                                <input type="text" id="nombre" class="form-control pago-input" placeholder="Ej. Juan Pérez" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="correo" class="form-label">Correo electrónico</label>
-                                <input type="email" id="correo" class="form-control bg-secondary text-light border-0" placeholder="correo@email.com" required>
+                                <input type="email" id="correo" class="form-control pago-input" placeholder="correo@email.com" required>
                             </div>
                         </div>
 
                         <div class="mb-3">
                             <label for="direccion" class="form-label">Dirección de entrega</label>
-                            <input type="text" id="direccion" class="form-control bg-secondary text-light border-0" placeholder="Calle 10 #25-30" required>
+                            <input type="text" id="direccion" class="form-control pago-input" placeholder="Calle 10 #25-30" required>
                         </div>
 
                         <div class="row mb-4">
                             <div class="col-md-6">
                                 <label for="ciudad" class="form-label">Ciudad</label>
-                                <input type="text" id="ciudad" class="form-control bg-secondary text-light border-0" placeholder="Medellín" required>
+                                <input type="text" id="ciudad" class="form-control pago-input" placeholder="Medellín" required>
                             </div>
                             <div class="col-md-6">
                                 <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="text" id="telefono" class="form-control bg-secondary text-light border-0" placeholder="300 123 4567" required>
+                                <input type="text" id="telefono" class="form-control pago-input" placeholder="300 123 4567" required>
                             </div>
                         </div>
 
                         <!-- Métodos de pago -->
                         <h5 class="fw-bold text-warning mb-3">Método de Pago</h5>
                         <div class="form-check mb-2">
-                            <input class="form-check-input bg-warning border-0" type="radio" name="pago" id="tarjeta" checked>
+                            <input class="form-check-input pago-radio" type="radio" name="pago" id="tarjeta" checked>
                             <label class="form-check-label" for="tarjeta">
                                 Tarjeta de crédito / débito 💳
                             </label>
                         </div>
                         <div class="form-check mb-2">
-                            <input class="form-check-input bg-warning border-0" type="radio" name="pago" id="nequi">
+                            <input class="form-check-input pago-radio" type="radio" name="pago" id="nequi">
                             <label class="form-check-label" for="nequi">
                                 Nequi / Daviplata 📱
                             </label>
                         </div>
                         <div class="form-check mb-4">
-                            <input class="form-check-input bg-warning border-0" type="radio" name="pago" id="efectivo">
+                            <input class="form-check-input pago-radio" type="radio" name="pago" id="efectivo">
                             <label class="form-check-label" for="efectivo">
                                 Pago contra entrega 💵
                             </label>
                         </div>
 
                         <!-- Botón de confirmar -->
-                        <button type="submit" class="btn btn-warning w-100 fw-bold text-dark">
+                        <button type="submit" class="btn btn-warning w-100 fw-bold text-dark pago-btn">
                             Confirmar y Pagar
                         </button>
                     </form>
@@ -99,5 +102,4 @@
 </div>
 
 @code {
-    // Más adelante aquí puedes manejar la lógica de pago, envío o validación del formulario.
 }
