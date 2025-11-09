@@ -5,17 +5,17 @@ namespace NexoAPP.Services
 {
     public class UsuarioService
     {
-        // 🔗 URL base de la API
+        //URL base de la API
         private readonly HttpClient _httpClient;
         private readonly string _url = "http://localhost:5080/api/Usuarios";
 
-        // 🧩 Constructor: recibe HttpClient inyectado por Blazor
+        //Constructor: recibe HttpClient inyectado por Blazor
         public UsuarioService(HttpClient httpClient)
         {
             _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
         }
 
-        // 📋 1. Obtener todos los usuarios
+        //Obtener todos los usuarios
         public async Task<List<Usuario>> GetAllAsync()
         {
             try
@@ -30,7 +30,7 @@ namespace NexoAPP.Services
             }
         }
 
-        // ➕ 2. Crear un nuevo usuario
+        //Crear un nuevo usuario
         public async Task<bool> CreateAsync(Usuario nuevoUsuario)
         {
             try
@@ -44,8 +44,38 @@ namespace NexoAPP.Services
                 throw;
             }
         }
+        // Actualizar usuario
+        public async Task<bool> UpdateAsync(Usuario usuarioActualizado)
+        {
+            try
+            {
+                var response = await _httpClient.PutAsJsonAsync($"{_url}/{usuarioActualizado.Id}", usuarioActualizado);
+                return response.IsSuccessStatusCode;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($" Error al actualizar usuario: {ex.Message}");
+                throw;
+            }
+        }
 
-        // 🔐 3. Iniciar sesión
+        // Eliminar usuario
+        public async Task<bool> DeleteAsync(int usuarioId)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"{_url}/{usuarioId}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($" Error al eliminar usuario: {ex.Message}");
+                throw;
+            }
+        }
+
+
+        // 3. Iniciar sesión
         public async Task<Usuario?> LoginAsync(string correo, string contrasena)
         {
             try

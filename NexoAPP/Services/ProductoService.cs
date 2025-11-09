@@ -23,12 +23,12 @@ namespace NexoAPP.Services
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error al obtener productos: {ex.Message}");
+                Console.WriteLine($"Error al obtener productos: {ex.Message}");
                 throw;
             }
         }
 
-        // ✅ Crear un nuevo producto (ahora sí lo guarda realmente)
+        // 
         public async Task CrearProductoAsync(Producto producto)
         {
             try
@@ -38,15 +38,15 @@ namespace NexoAPP.Services
                 if (!response.IsSuccessStatusCode)
                 {
                     var error = await response.Content.ReadAsStringAsync();
-                    Console.WriteLine($"⚠️ Error al crear producto: {response.StatusCode} - {error}");
+                    Console.WriteLine($" Error al crear producto: {response.StatusCode} - {error}");
                     throw new Exception("No se pudo crear el producto.");
                 }
 
-                Console.WriteLine("✅ Producto creado correctamente en la API.");
+                Console.WriteLine("Producto creado correctamente en la API.");
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"❌ Error al crear producto: {ex.Message}");
+                Console.WriteLine($"Error al crear producto: {ex.Message}");
                 throw;
             }
         }

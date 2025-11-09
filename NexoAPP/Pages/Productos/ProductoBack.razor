@@ -1,0 +1,208 @@
+﻿@page "/admin/productos"
+@using NexoAPP.Models
+@using NexoAPP.Services
+@inject ProductoService ProductoService
+
+
+<link href="css/Productoback.css" rel="stylesheet" />
+<body>
+
+
+<div class="container-productos">
+    <h2 class="titulo-principal">Gestión de Productos</h2>
+    <p class="subtitulo">Aquí puedes gestionar los productos de la aplicación.</p>
+
+    <div class="header-acciones">
+        <h5 class="text-muted">Listado actual de Productos</h5>
+        <button class="btn-agregar" @onclick="MostrarModalNuevo">
+            <i class="bi bi-plus-circle"></i> Nuevo Producto
+        </button>
+    </div>
+
+        <table class="table tabla-productos table-bordered table-hover">
+            <thead class="table-dark">
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoría</th>
+                    <th>Cantidad</th>
+                    <th>Imagen</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (productos is null)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-muted">Cargando Productos...</td>
+                    </tr>
+                }
+                else if (productos.Count == 0)
+                {
+                    <tr>
+                        <td colspan="7" class="text-center text-muted">No hay productos registrados.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var producto in productos)
+                    {
+                        <tr>
+                            <td>@producto.IdProducto</td>
+                            <td>@producto.Nombre</td>
+                            <td>@producto.Precio.ToString("C0")</td>
+                            <td>@producto.IdCategoria</td>
+                            <td>@producto.Cantidad</td>
+                            <td>
+                                @if (!string.IsNullOrWhiteSpace(producto.Imagen))
+                                {
+                                    <img src="@producto.Imagen" alt="@producto.Nombre" class="imagen-tabla" />
+                                }
+                            </td>
+                            <td>
+                                <button class="btn-editar" @onclick="() => EditarProducto(producto.IdProducto)">
+                                    <i class="bi bi-pencil-square"></i> Editar
+                                </button>
+                                <button class="btn-eliminar" @onclick="() => EliminarProducto(producto.IdProducto)">
+                                    <i class="bi bi-trash"></i> Eliminar
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+
+    @if (mostrarModal)
+    {
+        <div class="modal fade show d-block fondo-modal">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content modal-producto p-4">
+                    <h4 class="fw-bold mb-3">@tituloModal</h4>
+
+                    <EditForm Model="@productoSeleccionado" OnValidSubmit="GuardarProducto">
+                        <DataAnnotationsValidator />
+                        <ValidationSummary />
+
+                        <div class="row g-3">
+                            <div class="col-12">
+                                <label for="nombre" class="form-label">Nombre</label>
+                                <InputText id="nombre" class="form-control" @bind-Value="productoSeleccionado.Nombre" />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Descripción</label>
+                                <InputTextArea class="form-control" @bind-Value="productoSeleccionado.Descripcion" rows="3" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Precio (COP)</label>
+                                <InputNumber class="form-control" @bind-Value="productoSeleccionado.Precio" />
+                            </div>
+
+                            <div class="col-md-6">
+                                <label class="form-label">Cantidad</label>
+                                <InputNumber class="form-control" @bind-Value="productoSeleccionado.Cantidad" />
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Categoría</label>
+                                <InputSelect class="form-select" @bind-Value="productoSeleccionado.IdCategoria">
+                                    <option value="">Selecciona una categoría</option>
+                                    <option value="1">Ropa</option>
+                                    <option value="2">Calzado</option>
+                                    <option value="3">Accesorios</option>
+                                    <option value="4">Tecnología</option>
+                                    <option value="5">Hogar</option>
+                                    <option value="6">Belleza</option>
+                                    <option value="7">Deportes</option>
+                                    <option value="8">Juguetes</option>
+                                    <option value="9">Mascotas</option>
+                                    <option value="10">Otros</option>
+                                </InputSelect>
+                            </div>
+
+                            <div class="col-12">
+                                <label class="form-label">Imagen (URL)</label>
+                                <InputText class="form-control" @bind-Value="productoSeleccionado.Imagen" />
+                            </div>
+
+                            @if (!string.IsNullOrWhiteSpace(productoSeleccionado.Imagen))
+                            {
+                                <div class="col-12 text-center mt-2">
+                                    <img src="@productoSeleccionado.Imagen" alt="Vista previa" class="img-preview img-thumbnail" />
+                                </div>
+                            }
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <button class="btn-cancelar" type="button" @onclick="CerrarModal">Cancelar</button>
+                            <button class="btn-guardar" type="submit"><i class="bi bi-save"></i> Guardar
+                            </button>
+                        </div>
+                    </EditForm>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+</body>
+@code {
+    private List<Producto>? productos;
+    private Producto productoSeleccionado = new();
+    private bool mostrarModal = false;
+    private string tituloModal = "Nuevo Producto";
+
+    protected override async Task OnInitializedAsync() => await CargarProductos();
+
+    private async Task CargarProductos() => productos = await ProductoService.GetAllAsync();
+
+    private void MostrarModalNuevo()
+    {
+        productoSeleccionado = new Producto();
+        tituloModal = "Nuevo Producto";
+        mostrarModal = true;
+    }
+
+    private void EditarProducto(int id)
+    {
+        var producto = productos?.FirstOrDefault(p => p.IdProducto == id);
+        if (producto != null)
+        {
+            productoSeleccionado = new Producto
+            {
+                IdProducto = producto.IdProducto,
+                Nombre = producto.Nombre,
+                Descripcion = producto.Descripcion,
+                Precio = producto.Precio,
+                Cantidad = producto.Cantidad,
+                IdCategoria = producto.IdCategoria,
+                Imagen = producto.Imagen
+            };
+            tituloModal = "Editar Producto";
+            mostrarModal = true;
+        }
+    }
+
+    private async Task GuardarProducto()
+    {
+        await ProductoService.CrearProductoAsync(productoSeleccionado);
+        mostrarModal = false;
+        await CargarProductos();
+    }
+
+    private void CerrarModal() => mostrarModal = false;
+
+    private async Task EliminarProducto(int id)
+    {
+        var producto = productos?.FirstOrDefault(p => p.IdProducto == id);
+        if (producto != null)
+        {
+            productos.Remove(producto);
+            await Task.Delay(300);
+        }
+    }
+}

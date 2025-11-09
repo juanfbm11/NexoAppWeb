@@ -2,6 +2,7 @@
 @using NexoAPP.Models
 @using NexoAPP.Services
 @inject UsuarioService usuarioService
+@inject IJSRuntime JSRuntime
 @inherits LayoutComponentBase
 
 
@@ -118,7 +119,7 @@
         usuarios = await usuarioService.GetAllAsync();
     }
 
-    // 🔹 Abrir modal en modo "nuevo"
+    //Abrir modal en modo "nuevo"
     private void NuevoUsuarioModal()
     {
         usuarioActual = new Usuario();
@@ -126,7 +127,7 @@
         esEdicion = false;
     }
 
-    // 🔹 Abrir modal en modo "editar"
+    //Abrir modal en modo "editar"
     private void EditarUsuario(Usuario usuario)
     {
         usuarioActual = new Usuario
@@ -143,7 +144,7 @@
         esEdicion = true;
     }
 
-    // 🔹 Guardar (crear o actualizar)
+    //Guardar (crear o actualizar)
     private async Task GuardarUsuario()
     {
         try
@@ -154,8 +155,8 @@
             }
             else
             {
-                // TODO: implementar método UpdateAsync en UsuarioService
-                Console.WriteLine($"Editar usuario {usuarioActual.Nombre}");
+                
+                await usuarioService.UpdateAsync(usuarioActual);
             }
 
             usuarios = await usuarioService.GetAllAsync();
@@ -166,10 +167,24 @@
         }
     }
 
-    // 🔹 Eliminar usuario 
+    // Eliminar usuario 
     private async Task EliminarUsuario(Usuario usuario)
     {
-        Console.WriteLine($"Eliminar usuario: {usuario.Nombre}");
+        try
+        {
+            var confirmacion = await JSRuntime.InvokeAsync<bool>("confirm", $"¿Está seguro de eliminar al usuario {usuario.Nombre}?");
+            if (confirmacion)
+            {
+                await usuarioService.DeleteAsync(usuario.Id);
+                usuarios = await usuarioService.GetAllAsync();
+            }
+
+        }
+        catch (Exception ex)
+        {
+            
+            Console.WriteLine($"Error al eliminar: {ex.Message}");
+        }
         
     }
 }

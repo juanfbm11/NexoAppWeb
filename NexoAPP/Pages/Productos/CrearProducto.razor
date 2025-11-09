@@ -8,7 +8,7 @@
 
 <div class="crearproducto-container">
     <div class="crearproducto-card shadow">
-        <h2 class="text-center mb-3 fw-bold">🛍️ Agregar nuevo producto</h2>
+        <h2 class="text-center mb-3 fw-bold">🛍️Agregar nuevo producto</h2>
         <p class="text-center text-muted mb-4">
             Completa los datos para publicar tu producto en la tienda
         </p>
@@ -90,12 +90,12 @@
         try
         {
             await Service.CrearProductoAsync(nuevoProducto);
-            Console.WriteLine($"✅ Producto creado: {nuevoProducto.Nombre}");
+            Console.WriteLine($"Producto creado: {nuevoProducto.Nombre}");
             Navigation.NavigateTo("/", true); // Recarga el home
         }
         catch (Exception ex)
         {
-            Console.WriteLine($"❌ Error al guardar producto: {ex.Message}");
+            Console.WriteLine($"Error al guardar producto: {ex.Message}");
         }
     }
 }

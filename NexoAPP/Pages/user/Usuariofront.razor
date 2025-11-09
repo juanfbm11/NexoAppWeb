@@ -168,6 +168,8 @@
 
 
 @code {
+    [Parameter]
+    public int dest { get; set; }
 
     private Usuario NuevoUsuario = new();
     private Login NuevoLogin = new();
@@ -207,7 +209,11 @@
         {   var success =await usuarioService.CreateAsync(NuevoUsuario);
             if (success)
             {
-                NuevoUsuario = new Usuario();
+                
+                NuevoUsuario = new Usuario();                
+                vistaActual = "inicio";
+                StateHasChanged();
+                Console.WriteLine("Usuario registrado exitosamente."); NuevoUsuario = new Usuario();
                 Volver();
 
             }
