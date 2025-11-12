@@ -66,11 +66,12 @@ Títulos
         border-bottom: 1px solid #dee2e6;
     }
 
- Imagen en tabla 
+Imagen en tabla
 .imagen-tabla {
     border-radius: 8px;
-    max-width: 100px;
-    height: auto;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
 }
 
  Modal 

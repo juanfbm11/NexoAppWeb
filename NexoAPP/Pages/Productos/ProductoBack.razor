@@ -2,6 +2,9 @@
 @using NexoAPP.Models
 @using NexoAPP.Services
 @inject ProductoService ProductoService
+@inject NavigationManager Navigation
+@inject IJSRuntime JS
+
 
 
 <link href="css/Productoback.css" rel="stylesheet" />
@@ -52,7 +55,7 @@
                             <td>@producto.IdProducto</td>
                             <td>@producto.Nombre</td>
                             <td>@producto.Precio.ToString("C0")</td>
-                            <td>@producto.IdCategoria</td>
+                            <td>@producto.Categoria</td>
                             <td>@producto.Cantidad</td>
                             <td>
                                 @if (!string.IsNullOrWhiteSpace(producto.Imagen))
@@ -82,7 +85,7 @@
                 <div class="modal-content modal-producto p-4">
                     <h4 class="fw-bold mb-3">@tituloModal</h4>
 
-                    <EditForm Model="@productoSeleccionado" OnValidSubmit="GuardarProducto">
+                    <EditForm Model="@productoSeleccionado" >
                         <DataAnnotationsValidator />
                         <ValidationSummary />
 
@@ -109,7 +112,7 @@
 
                             <div class="col-12">
                                 <label class="form-label">Categoría</label>
-                                <InputSelect class="form-select" @bind-Value="productoSeleccionado.IdCategoria">
+                                <InputSelect class="form-select" @bind-Value="productoSeleccionado.Categoria">
                                     <option value="">Selecciona una categoría</option>
                                     <option value="1">Ropa</option>
                                     <option value="2">Calzado</option>
@@ -139,7 +142,8 @@
 
                         <div class="text-end mt-4">
                             <button class="btn-cancelar" type="button" @onclick="CerrarModal">Cancelar</button>
-                            <button class="btn-guardar" type="submit"><i class="bi bi-save"></i> Guardar
+                                <button class="btn-guardar" type="button"
+                                     @onclick="GuardarProducto"><i class="bi bi-save"></i> Guardar
                             </button>
                         </div>
                     </EditForm>
@@ -179,7 +183,7 @@
                 Descripcion = producto.Descripcion,
                 Precio = producto.Precio,
                 Cantidad = producto.Cantidad,
-                IdCategoria = producto.IdCategoria,
+                Categoria = producto.Categoria,
                 Imagen = producto.Imagen
             };
             tituloModal = "Editar Producto";
@@ -189,20 +193,54 @@
 
     private async Task GuardarProducto()
     {
-        await ProductoService.CrearProductoAsync(productoSeleccionado);
-        mostrarModal = false;
-        await CargarProductos();
+        try
+        {
+            if (productoSeleccionado.IdProducto == 0)
+            {
+                // Crear nuevo producto
+                await ProductoService.CrearProductoAsync(productoSeleccionado);
+                Console.WriteLine("✅ Producto creado correctamente.");
+            }
+            else
+            {
+                // Editar producto existente
+                await ProductoService.ActualizarProductoAsync(productoSeleccionado.IdProducto, productoSeleccionado);
+                Console.WriteLine("✏️ Producto editado correctamente.");
+            }
+
+            mostrarModal = false;
+            await CargarProductos();
+            Navigation.NavigateTo("/");
+
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"❌ Error al guardar producto: {ex.Message}");
+        }
     }
+
 
     private void CerrarModal() => mostrarModal = false;
 
     private async Task EliminarProducto(int id)
     {
-        var producto = productos?.FirstOrDefault(p => p.IdProducto == id);
-        if (producto != null)
+        bool confirmar = await JS.InvokeAsync<bool>("confirm", "¿Seguro que deseas eliminar este producto?");
+        if (!confirmar)
+            return;
+
+        try
         {
-            productos.Remove(producto);
-            await Task.Delay(300);
+            await ProductoService.EliminarProductoAsync(id);
+            await CargarProductos();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error al eliminar producto: {ex.Message}");
         }
     }
+
+    
+
+   
+
 }

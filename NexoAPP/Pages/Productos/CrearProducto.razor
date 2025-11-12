@@ -23,11 +23,11 @@
                     <InputText class="form-control" placeholder="Ej: Camiseta oversize negra" @bind-Value="nuevoProducto.Nombre" />
                 </div>
 
-                <div class="col-12">
+                 <div class="col-12">
                     <label class="form-label">Descripción</label>
                     <InputTextArea class="form-control" placeholder="Ej: Camiseta de algodón suave con logo bordado..."
                                    @bind-Value="nuevoProducto.Descripcion" rows="3" />
-                </div>
+                </div> 
 
                 <div class="col-md-6">
                     <label class="form-label">Precio (COP)</label>
@@ -41,7 +41,7 @@
 
                 <div class="col-12">
                     <label class="form-label">Categoría</label>
-                    <InputSelect class="form-select" @bind-Value="nuevoProducto.IdCategoria">
+                    <InputSelect class="form-select" @bind-Value="nuevoProducto.Categoria">
                         <option value="">Selecciona una categoría</option>
                         <option value="1">Ropa</option>
                         <option value="2">Calzado</option>
@@ -91,11 +91,13 @@
         {
             await Service.CrearProductoAsync(nuevoProducto);
             Console.WriteLine($"Producto creado: {nuevoProducto.Nombre}");
-            Navigation.NavigateTo("/", true); // Recarga el home
+            Navigation.NavigateTo("/"); 
         }
         catch (Exception ex)
         {
             Console.WriteLine($"Error al guardar producto: {ex.Message}");
         }
     }
+
+
 }

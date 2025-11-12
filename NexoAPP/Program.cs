@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using Microsoft.Data.SqlClient;
 using NexoAPP.Services;
-using System.Data.SqlClient;
 using System.Data;
 
 
@@ -22,15 +22,15 @@ namespace NexoAPP
                 
             });
 
-           
-
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddScoped<UsuarioService>();
             builder.Services.AddScoped<ProductoService>();
+
            
 
+           
 
             await builder.Build().RunAsync();
 

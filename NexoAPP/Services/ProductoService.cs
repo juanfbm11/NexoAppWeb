@@ -6,7 +6,7 @@ namespace NexoAPP.Services
     public class ProductoService
     {
         private readonly HttpClient _httpClient;
-        private readonly string _url = "http://localhost:5080/api/Productos";
+        private readonly string _url = "http://localhost:5080/api/Producto";
 
         public ProductoService(HttpClient httpClient)
         {
@@ -50,5 +50,20 @@ namespace NexoAPP.Services
                 throw;
             }
         }
+
+        public async Task ActualizarProductoAsync(int id, Producto producto)
+        {
+            var response = await _httpClient.PutAsJsonAsync($"{_url}/{id}", producto);
+            response.EnsureSuccessStatusCode();
+        }
+
+        public async Task EliminarProductoAsync(int id)
+        {
+            var response = await _httpClient.DeleteAsync($"{_url}/{id}");
+            response.EnsureSuccessStatusCode();
+        }
+
+
+
     }
 }

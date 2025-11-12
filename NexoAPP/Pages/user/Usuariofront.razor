@@ -120,9 +120,12 @@
                     <InputText id="direccion" class="form-control" @bind-Value="NuevoUsuario.Direccion" required />
                 </div>
 
-                <div class="mb-3">
+                @* <div class="mb-3">
                     <label for="municipio" class="form-label">Municipio</label>
-                  <InputSelect id="municipio" class="form-select" @bind-Value="NuevoUsuario.Municipio" required>
+                  <InputSelect id="municipio"
+                               class="form-select"
+                               @bind-Value="NuevoUsuario.IdMunicipio"
+                               required>
                         <option value="" >Seleccione un municipio</option>
                         <option >Medellín</option>
                         <option >Itagüí</option>
@@ -132,13 +135,13 @@
                         <option >Copacabana</option>
                         <option >Barbosa</option>
                     </InputSelect> 
-                </div>
+                </div> *@
 
-                <!-- codigopostal -->
+                @* <!-- codigopostal -->
                 <div class="mb-3">
                     <label for="codigopostal" class="form-label">Código Postal</label>
                     <InputNumber id="codigopostal" class="form-control" @bind-Value="NuevoUsuario.CodigoPostal" required />
-                </div>
+                </div> *@
 
                 <!-- contraseña -->
                 <div class="mb-3">
@@ -209,12 +212,9 @@
         {   var success =await usuarioService.CreateAsync(NuevoUsuario);
             if (success)
             {
-                
+                Console.WriteLine("Registro exitoso.");
                 NuevoUsuario = new Usuario();                
-                vistaActual = "inicio";
-                StateHasChanged();
-                Console.WriteLine("Usuario registrado exitosamente."); NuevoUsuario = new Usuario();
-                Volver();
+                Navigation.NavigateTo("/");                     
 
             }
             else

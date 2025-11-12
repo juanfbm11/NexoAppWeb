@@ -7,7 +7,7 @@ namespace NexoAPP.Services
     {
         //URL base de la API
         private readonly HttpClient _httpClient;
-        private readonly string _url = "http://localhost:5080/api/Usuarios";
+        private readonly string _url = "http://localhost:5080/api/Usuario" ;
 
         //Constructor: recibe HttpClient inyectado por Blazor
         public UsuarioService(HttpClient httpClient)
@@ -83,17 +83,24 @@ namespace NexoAPP.Services
                 var loginData = new { Correo = correo, Contrasena = contrasena };
                 var response = await _httpClient.PostAsJsonAsync($"{_url}/login", loginData);
 
-                if (!response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
+                {
+                    return await response.Content.ReadFromJsonAsync<Usuario>();
+                }
+                else
+                {
+                    
+                    var error = await response.Content.ReadAsStringAsync();
+                    Console.WriteLine($"Error de login: {error}");
                     return null;
-
-                var usuario = await response.Content.ReadFromJsonAsync<Usuario>();
-                return usuario;
+                }
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($" Error al iniciar sesión: {ex.Message}");
+                Console.WriteLine($"Error al iniciar sesión: {ex.Message}");
                 throw;
             }
         }
+
     }
 }
