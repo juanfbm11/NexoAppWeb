@@ -38,7 +38,7 @@
             @foreach (var usuario in usuarios)
             {
                 <tr>
-                    <td>@usuario.Id</td>
+                    <td>@usuario.IdUsuario</td>
                     <td>@usuario.Nombre</td>
                     <td>@usuario.Telefono</td>
                     <td>@usuario.Direccion</td>
@@ -132,7 +132,7 @@
     {
         usuarioActual = new Usuario
         {
-            Id = usuario.Id,
+            IdUsuario = usuario.IdUsuario,
             Nombre = usuario.Nombre,
             Telefono = usuario.Telefono,
             Direccion = usuario.Direccion,
@@ -175,7 +175,7 @@
             var confirmacion = await JSRuntime.InvokeAsync<bool>("confirm", $"¿Está seguro de eliminar al usuario {usuario.Nombre}?");
             if (confirmacion)
             {
-                await usuarioService.DeleteAsync(usuario.Id);
+                await usuarioService.DeleteAsync(usuario.IdUsuario);
                 usuarios = await usuarioService.GetAllAsync();
             }
 

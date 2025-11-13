@@ -1,9 +1,11 @@
 ﻿@page "/admin/productos"
 @using NexoAPP.Models
 @using NexoAPP.Services
+@using Microsoft.AspNetCore.Components.Forms
 @inject ProductoService ProductoService
 @inject NavigationManager Navigation
 @inject IJSRuntime JS
+
 
 
 
@@ -55,7 +57,7 @@
                             <td>@producto.IdProducto</td>
                             <td>@producto.Nombre</td>
                             <td>@producto.Precio.ToString("C0")</td>
-                            <td>@producto.Categoria</td>
+                            <td>@producto.IdCategoria</td>
                             <td>@producto.Cantidad</td>
                             <td>
                                 @if (!string.IsNullOrWhiteSpace(producto.Imagen))
@@ -112,7 +114,7 @@
 
                             <div class="col-12">
                                 <label class="form-label">Categoría</label>
-                                <InputSelect class="form-select" @bind-Value="productoSeleccionado.Categoria">
+                                <InputSelect class="form-select" @bind-Value="productoSeleccionado.IdCategoria">
                                     <option value="">Selecciona una categoría</option>
                                     <option value="1">Ropa</option>
                                     <option value="2">Calzado</option>
@@ -183,7 +185,7 @@
                 Descripcion = producto.Descripcion,
                 Precio = producto.Precio,
                 Cantidad = producto.Cantidad,
-                Categoria = producto.Categoria,
+                IdCategoria = producto.IdCategoria,
                 Imagen = producto.Imagen
             };
             tituloModal = "Editar Producto";

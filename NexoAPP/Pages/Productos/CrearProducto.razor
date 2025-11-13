@@ -40,8 +40,7 @@
                 </div>
 
                 <div class="col-12">
-                    <label class="form-label">Categoría</label>
-                    <InputSelect class="form-select" @bind-Value="nuevoProducto.Categoria">
+                    <InputSelect class="form-select" @bind-Value="nuevoProducto.IdCategoria">
                         <option value="">Selecciona una categoría</option>
                         <option value="1">Ropa</option>
                         <option value="2">Calzado</option>
@@ -54,6 +53,7 @@
                         <option value="9">Mascotas</option>
                         <option value="10">Otros</option>
                     </InputSelect>
+
                 </div>
 
                 <div class="col-12">
@@ -69,9 +69,10 @@
                 }
 
                 <div class="col-12 mt-3">
-                    <button class="btn btn-warning w-100 fw-semibold btn-save" type="submit">
-                        <i class="bi bi-plus-circle"></i> Guardar producto
+                    <button class="btn-guardar" type="submit">
+                        <i class="bi bi-save"></i> Guardar
                     </button>
+
                 </div>
             </div>
         </EditForm>
@@ -91,7 +92,7 @@
         {
             await Service.CrearProductoAsync(nuevoProducto);
             Console.WriteLine($"Producto creado: {nuevoProducto.Nombre}");
-            Navigation.NavigateTo("/"); 
+            Navigation.NavigateTo("/");
         }
         catch (Exception ex)
         {

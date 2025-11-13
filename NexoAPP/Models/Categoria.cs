@@ -1,6 +1,12 @@
-﻿namespace NexoAPP.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace NexoAPP.Models
 {
     public class Categoria
     {
+
+        [Key]
+        public int IdCategoria { get; set; }
+        public string Nombre { get; set; } = string.Empty;
     }
 }

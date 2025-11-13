@@ -27,10 +27,11 @@ namespace NexoAPP
 
             builder.Services.AddScoped<UsuarioService>();
             builder.Services.AddScoped<ProductoService>();
+         
 
-           
 
-           
+
+
 
             await builder.Build().RunAsync();
 

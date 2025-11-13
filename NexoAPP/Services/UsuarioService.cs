@@ -49,7 +49,7 @@ namespace NexoAPP.Services
         {
             try
             {
-                var response = await _httpClient.PutAsJsonAsync($"{_url}/{usuarioActualizado.Id}", usuarioActualizado);
+                var response = await _httpClient.PutAsJsonAsync($"{_url}/{usuarioActualizado.IdUsuario}", usuarioActualizado);
                 return response.IsSuccessStatusCode;
             }
             catch (HttpRequestException ex)
