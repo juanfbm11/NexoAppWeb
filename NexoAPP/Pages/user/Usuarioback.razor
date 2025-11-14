@@ -5,105 +5,122 @@
 @inject IJSRuntime JSRuntime
 @inherits LayoutComponentBase
 
+<link rel="stylesheet" href="/css/usuarioBack.css" />
 
-<h1 class="mb-4">Usuarios Registrados</h1>
+<div class="panel-container">
 
-<!-- Botón para abrir el modal -->
+    <div class="header-section">
+        <h1>👤 Usuarios Registrados</h1>
 
-<div class="text-start mb-3">
-    <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#usuarioModal" @onclick="NuevoUsuarioModal">
-        <i class="bi bi-patch-plus-fill"></i> Nuevo Usuario
-    </button>
-</div> 
+        <button class="btn-primary-dark" data-bs-toggle="modal" data-bs-target="#usuarioModal"
+                @onclick="NuevoUsuarioModal">
+            <i class="bi bi-patch-plus-fill"></i> Nuevo Usuario
+        </button>
+    </div>
 
-
-
-<!-- Tabla de usuarios -->
-<table class="table table-striped table-bordered align-middle shadow-sm">
-    <thead class="table-dark">
-        <tr>
-            <th>Id</th>
-            <th>Nombre Completo</th>
-            <th>Teléfono</th>
-            <th>Dirección</th>
-            <th>Correo</th>
-            <th>Contraseña</th>
-            <th>Fecha Nacimiento</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (usuarios?.Count > 0)
-        {
-            @foreach (var usuario in usuarios)
-            {
+    <div class="table-wrapper">
+        <table class="table-custom">
+            <thead>
                 <tr>
-                    <td>@usuario.IdUsuario</td>
-                    <td>@usuario.Nombre</td>
-                    <td>@usuario.Telefono</td>
-                    <td>@usuario.Direccion</td>
-                    <td>@usuario.Correo</td>
-                    <td>@usuario.Contrasena</td>
-                    <td>@usuario.FechaNacimiento.ToShortDateString()</td>
-                    <td>
-                        <button class="btn btn-warning me-1" data-bs-toggle="modal" data-bs-target="#usuarioModal"
-                                @onclick="() => EditarUsuario(usuario)">
-                            <i class="bi bi-pencil-square"></i>
-                        </button>
-                        <button class="btn btn-danger" @onclick="() => EliminarUsuario(usuario)">
-                            <i class="bi bi-trash-fill"></i>
-                        </button>
-                    </td>
+                    <th>ID</th>
+                    <th>Nombre Completo</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th>Correo</th>
+                    <th>Contraseña</th>
+                    <th>Nacimiento</th>
+                    <th>Acciones</th>
                 </tr>
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="8" class="text-center text-muted">No hay usuarios registrados.</td>
-            </tr>
-        }
-    </tbody>
-</table>
+            </thead>
 
-<!-- Modal de Bootstrap -->
-<div class="modal fade" id="usuarioModal" tabindex="-1" aria-labelledby="usuarioModalLabel" aria-hidden="true">
+            <tbody>
+                @if (usuarios?.Count > 0)
+                {
+                    @foreach (var usuario in usuarios)
+                    {
+                        <tr>
+                            <td>@usuario.IdUsuario</td>
+                            <td>@usuario.Nombre</td>
+                            <td>@usuario.Telefono</td>
+                            <td>@usuario.Direccion</td>
+                            <td>@usuario.Correo</td>
+                            <td class="blur-text">@usuario.Contrasena</td>
+                            <td>@usuario.FechaNacimiento.ToShortDateString()</td>
+                            <td>
+                                <button class="btn-warning-dark" data-bs-toggle="modal" data-bs-target="#usuarioModal"
+                                        @onclick="() => EditarUsuario(usuario)">
+                                    ✏️
+                                </button>
+
+                                <button class="btn-danger-dark" @onclick="() => EliminarUsuario(usuario)">
+                                    🗑️
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="8" class="no-rows">No hay usuarios registrados.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="usuarioModal" tabindex="-1">
     <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content rounded-4 shadow-lg">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="usuarioModalLabel">@tituloModal</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        <div class="modal-content modal-dark">
+
+            <div class="modal-header modal-header-dark">
+                <h5 class="modal-title">@tituloModal</h5>
+                <button type="button" class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
             </div>
+
             <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Nombre Completo</label>
-                    <input class="form-control" @bind="usuarioActual.Nombre" />
+
+                <div class="form-group-dark">
+                    <label>Nombre Completo</label>
+                    <input class="input-dark" @bind="usuarioActual.Nombre" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Correo</label>
-                    <input class="form-control" @bind="usuarioActual.Correo" type="email" />
+
+                <div class="form-group-dark">
+                    <label>Correo</label>
+                    <input class="input-dark" @bind="usuarioActual.Correo" type="email" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Contraseña</label>
-                    <input class="form-control" @bind="usuarioActual.Contrasena" type="password" />
+
+                <div class="form-group-dark">
+                    <label>Contraseña</label>
+                    <input class="input-dark" @bind="usuarioActual.Contrasena" type="password" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Teléfono</label>
-                    <input class="form-control" @bind="usuarioActual.Telefono" />
+
+                <div class="form-group-dark">
+                    <label>Teléfono</label>
+                    <input class="input-dark" @bind="usuarioActual.Telefono" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Dirección</label>
-                    <input class="form-control" @bind="usuarioActual.Direccion" />
+
+                <div class="form-group-dark">
+                    <label>Dirección</label>
+                    <input class="input-dark" @bind="usuarioActual.Direccion" />
                 </div>
-                <div class="mb-3">
-                    <label class="form-label">Fecha de Nacimiento</label>
-                    <input class="form-control" type="date" @bind="usuarioActual.FechaNacimiento" />
+
+                <div class="form-group-dark">
+                    <label>Fecha de nacimiento</label>
+                    <input class="input-dark" type="date" @bind="usuarioActual.FechaNacimiento" />
                 </div>
+
             </div>
-            <div class="modal-footer">
-                <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button class="btn btn-primary" @onclick="GuardarUsuario">Guardar</button>
+
+            <div class="modal-footer modal-footer-dark">
+                <button class="btn-secondary-dark" data-bs-dismiss="modal">Cancelar</button>
+                <button class="btn-primary-dark" @onclick="GuardarUsuario">Guardar</button>
             </div>
+
         </div>
     </div>
 </div>
@@ -119,7 +136,6 @@
         usuarios = await usuarioService.GetAllAsync();
     }
 
-    //Abrir modal en modo "nuevo"
     private void NuevoUsuarioModal()
     {
         usuarioActual = new Usuario();
@@ -127,7 +143,6 @@
         esEdicion = false;
     }
 
-    //Abrir modal en modo "editar"
     private void EditarUsuario(Usuario usuario)
     {
         usuarioActual = new Usuario
@@ -140,51 +155,28 @@
             Contrasena = usuario.Contrasena,
             FechaNacimiento = usuario.FechaNacimiento
         };
+
         tituloModal = "Editar Usuario";
         esEdicion = true;
     }
 
-    //Guardar (crear o actualizar)
     private async Task GuardarUsuario()
     {
-        try
-        {
-            if (!esEdicion)
-            {
-                await usuarioService.CreateAsync(usuarioActual);
-            }
-            else
-            {
-                
-                await usuarioService.UpdateAsync(usuarioActual);
-            }
+        if (esEdicion)
+            await usuarioService.UpdateAsync(usuarioActual);
+        else
+            await usuarioService.CreateAsync(usuarioActual);
 
-            usuarios = await usuarioService.GetAllAsync();
-        }
-        catch (Exception ex)
-        {
-            Console.WriteLine($"Error al guardar: {ex.Message}");
-        }
+        usuarios = await usuarioService.GetAllAsync();
     }
 
-    // Eliminar usuario 
     private async Task EliminarUsuario(Usuario usuario)
     {
-        try
+        if (await JSRuntime.InvokeAsync<bool>("confirm",
+            $"¿Eliminar al usuario {usuario.Nombre}?"))
         {
-            var confirmacion = await JSRuntime.InvokeAsync<bool>("confirm", $"¿Está seguro de eliminar al usuario {usuario.Nombre}?");
-            if (confirmacion)
-            {
-                await usuarioService.DeleteAsync(usuario.IdUsuario);
-                usuarios = await usuarioService.GetAllAsync();
-            }
-
+            await usuarioService.DeleteAsync(usuario.IdUsuario);
+            usuarios = await usuarioService.GetAllAsync();
         }
-        catch (Exception ex)
-        {
-            
-            Console.WriteLine($"Error al eliminar: {ex.Message}");
-        }
-        
     }
 }

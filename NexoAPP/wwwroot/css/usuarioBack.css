@@ -1,0 +1,129 @@
+.panel-container {
+    background: #0c0c0c;
+    padding: 25px;
+    border-radius: 15px;
+    color: #fff;
+}
+
+/* Header */
+.header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+    .header-section h1 {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+/* Tabla */
+.table-wrapper {
+    overflow-x: auto;
+}
+
+.table-custom {
+    width: 100%;
+    border-collapse: collapse;
+    background: #111;
+    color: #ddd;
+}
+
+    .table-custom thead {
+        background: #222;
+    }
+
+    .table-custom th,
+    .table-custom td {
+        padding: 12px;
+        border-bottom: 1px solid #333;
+    }
+
+    .table-custom tr:hover {
+        background-color: #1a1a1a;
+    }
+
+/* Texto de contraseña borroso */
+.blur-text {
+    filter: blur(4px);
+    user-select: none;
+}
+
+/* Mensaje sin registros */
+.no-rows {
+    padding: 20px;
+    color: #777;
+}
+
+/* Botones principales */
+.btn-primary-dark,
+.btn-secondary-dark,
+.btn-warning-dark,
+.btn-danger-dark {
+    border: none;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: .9rem;
+    cursor: pointer;
+}
+
+.btn-primary-dark {
+    background: #007bff;
+    color: white;
+}
+
+.btn-secondary-dark {
+    background: #555;
+    color: white;
+}
+
+.btn-warning-dark {
+    background: #e7b000;
+    color: #111;
+}
+
+.btn-danger-dark {
+    background: #d9534f;
+    color: white;
+}
+
+    .btn-danger-dark:hover {
+        background: #c9302c;
+    }
+
+/* Modal */
+.modal-dark {
+    background: #121212;
+    color: white;
+    border-radius: 12px;
+}
+
+.modal-header-dark {
+    background: #222;
+    border-bottom: none;
+}
+
+.modal-footer-dark {
+    background: #1b1b1b;
+    border-top: none;
+}
+
+/* Inputs */
+.form-group-dark {
+    margin-bottom: 15px;
+}
+
+.input-dark {
+    width: 100%;
+    padding: 10px;
+    background: #1e1e1e;
+    border: 1px solid #333;
+    color: white;
+    border-radius: 6px;
+}
+
+    .input-dark:focus {
+        outline: none;
+        border-color: #007bff;
+    }
