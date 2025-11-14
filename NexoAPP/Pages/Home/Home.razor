@@ -2,6 +2,7 @@
 @using NexoAPP.Models
 @using NexoAPP.Services
 @inject ProductoService Service
+@inject CarritoService Carrito
 
 <link href="css/Home.css" rel="stylesheet" />
 
@@ -87,6 +88,16 @@
 
     private void AgregarAlCarrito(Producto producto)
     {
-        Console.WriteLine($"🛒 Producto agregado al carrito: {producto.Nombre}");
+        var productoParaCarrito = new Producto
+        {
+            IdProducto = producto.IdProducto,
+            Nombre = producto.Nombre,
+            Precio = producto.Precio,
+            Imagen = producto.Imagen,
+            Descripcion = producto.Descripcion,
+            Cantidad = 1
+        };
+        Carrito.AgregarProducto(productoParaCarrito);
     }
+    
 }

@@ -120,6 +120,12 @@
     private void IrCarrito(){
         Navigation.NavigateTo("/Carrito");
     }
+
+    public MainLayout(NavigationManager navigation)
+    {
+        Navigation = navigation;
+    }
+
     private void IrPedido()
     {
         Navigation.NavigateTo("/Pedido");

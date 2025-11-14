@@ -26,8 +26,9 @@ namespace NexoAPP
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
             builder.Services.AddScoped<UsuarioService>();
-            builder.Services.AddScoped<ProductoService>();
-         
+            builder.Services.AddScoped<ProductoService>();            
+            builder.Services.AddSingleton<NexoAPP.Services.CarritoService>();
+
 
 
 

@@ -1,6 +1,9 @@
-﻿@page "/carrito"
+﻿@page "/Carrito"
 @using System.Linq
+@using NexoAPP.Models
 @inject NavigationManager nav
+@inject CarritoService CarritoService 
+
 
 <link href="css/Carrito.css" rel="stylesheet" />
 
@@ -48,31 +51,37 @@
 </div>
 
 @code {
-    public class Producto
-    {
-        public string Nombre { get; set; }
-        public string Imagen { get; set; }
-        public decimal Precio { get; set; }
-        public int Cantidad { get; set; }
-    }
+    private List<Producto> productos = new();
 
-    List<Producto> productos = new()
+    protected override async Task OnInitializedAsync()
+
     {
-        new Producto { Nombre = "Auriculares Bluetooth", Imagen = "/imagenes/Playstation5.jpg", Precio = 120000, Cantidad = 1 },
-        new Producto { Nombre = "Smartwatch", Imagen = "/imagenes/Vans.jpg", Precio = 230000, Cantidad = 2 }
-    };
+        productos = await CarritoService.ObtenerProductosAsync();
+        CarritoService.OnChange += StateHasChanged;
+        
+    }     
 
     decimal Total => productos.Sum(p => p.Precio * p.Cantidad);
 
-    void AumentarCantidad(Producto p) => p.Cantidad++;
+    void AumentarCantidad(Producto p)
+    {
+        p.Cantidad++;
+        CarritoService.AgregarProducto(p);
+    }
 
     void DisminuirCantidad(Producto p)
     {
         if (p.Cantidad > 1)
+        {
             p.Cantidad--;
+            CarritoService.AgregarProducto(p);
+        }
     }
 
-    void EliminarProducto(Producto p) => productos.Remove(p);
+    void EliminarProducto(Producto p)
+    {
+        CarritoService.EliminarProducto(p.IdProducto);
+    }
 
     void IrAPago() => nav.NavigateTo("/Pago");
 }
