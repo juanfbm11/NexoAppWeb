@@ -1,8 +1,8 @@
 ﻿@page "/Pago"
 @using NexoAPP.Models
-
 @inject CarritoService CarritoService
-
+@inject PagoService PagoService
+@inject NavigationManager nav
 
 <link href="css/pago.css" rel="stylesheet" />
 
@@ -96,7 +96,8 @@
                         </div>
 
                         <!-- Botón de confirmar -->
-                        <button type="submit" class="btn btn-warning w-100 fw-bold text-dark pago-btn">
+                        <button type="button" @onclick="ConfirmarPago"
+                                class="btn btn-warning w-100 fw-bold text-dark pago-btn">
                             Confirmar y Pagar
                         </button>
                     </form>
@@ -106,8 +107,9 @@
     </div>
 </div>
 
-@code 
-{
+
+
+@code {
     private List<Producto> productos = new();
     private decimal total = 0;
 
@@ -117,6 +119,26 @@
         total = CarritoService.Total;
     }
 
+    private async Task ConfirmarPago()
+    {
+        // Aquí puedes implementar la lógica de confirmación
+        // Por ejemplo, mostrar un mensaje o enviar datos al backend
 
+        Console.WriteLine("Pago confirmado");
+
+        // Simulación de lógica (puedes reemplazar con tu servicio real)
+        await Task.Delay(500); // Simula una operación asincrónica
+
+        
+    }
+    
 }
+
+    
+
+    
+
+
+
+
 

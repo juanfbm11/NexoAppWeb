@@ -28,6 +28,8 @@ namespace NexoAPP
             builder.Services.AddScoped<UsuarioService>();
             builder.Services.AddScoped<ProductoService>();            
             builder.Services.AddSingleton<NexoAPP.Services.CarritoService>();
+            builder.Services.AddScoped<PagoService>();
+
 
 
 
