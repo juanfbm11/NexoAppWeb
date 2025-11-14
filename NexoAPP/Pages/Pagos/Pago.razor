@@ -1,4 +1,8 @@
 ﻿@page "/Pago"
+@using NexoAPP.Models
+
+@inject CarritoService CarritoService
+
 
 <link href="css/pago.css" rel="stylesheet" />
 
@@ -20,23 +24,25 @@
                     <!-- Resumen del pedido -->
                     <h5 class="fw-bold text-warning mb-3">Resumen del Pedido</h5>
                     <ul class="list-group mb-4">
-                        <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
-                            Audífonos Bluetooth
-                            <span class="text-warning">$120.000</span>
-                        </li>
-                        <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
-                            Camiseta NEXO Edition
-                            <span class="text-warning">$85.000</span>
-                        </li>
+                        @foreach (var p in productos)
+                        {
+                            <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
+                                @p.Nombre 
+                                <span class="text-warning">$@((p.Precio * p.Cantidad).ToString("N0"))</span>
+                            </li>
+                        }
+
                         <li class="list-group-item pago-item d-flex justify-content-between align-items-center">
                             Envío
                             <span class="text-warning">$10.000</span>
                         </li>
+
                         <li class="list-group-item pago-item fw-bold border-warning d-flex justify-content-between align-items-center">
                             Total
-                            <span class="text-success">$215.000</span>
+                            <span class="text-success">$@((total + 10000).ToString("N0"))</span>
                         </li>
                     </ul>
+
 
                     <!-- Datos del comprador -->
                     <h5 class="fw-bold text-warning mb-3">Datos del comprador</h5>
@@ -100,7 +106,17 @@
     </div>
 </div>
 
-@code {
+@code 
+{
+    private List<Producto> productos = new();
+    private decimal total = 0;
+
+    protected override async Task OnInitializedAsync()
+    {
+        productos = await CarritoService.ObtenerProductosAsync();
+        total = CarritoService.Total;
+    }
+
 
 }
-}
+
