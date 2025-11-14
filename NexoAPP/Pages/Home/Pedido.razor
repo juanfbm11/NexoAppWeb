@@ -1,10 +1,88 @@
 ﻿@page "/Pedido"
+@inject NavigationManager nav
 
-<h2>
-    APARTADO DE PEDIDOS HECHOS
-</h2>
+<link href="css/Pedido.css" rel="stylesheet" />
 
+<div class="pedido-container">
+    <h2 class="titulo">📦 Historial de Pedidos</h2>
+
+    @if (pedidos.Count == 0)
+    {
+        <div class="no-pedidos">
+            <p>No has realizado ningún pedido todavía 😔</p>
+            <a class="btn btn-warning" href="/">Ir a comprar</a>
+        </div>
+    }
+    else
+    {
+        <table class="table pedido-tabla shadow">
+            <thead class="table-warning">
+                <tr>
+                    <th>ID Pedido</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Acción</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var pedido in pedidos)
+                {
+                    <tr>
+                        <td>#@pedido.IdPedido</td>
+                        <td>@pedido.Fecha.ToString("dd/MM/yyyy")</td>
+                        <td>$@pedido.Total</td>
+                        <td>
+                            <span class="estado @GetEstadoClase(pedido.Estado)">
+                                @pedido.Estado
+                            </span>
+                        </td>
+
+                        <td>
+                            <button class="btn detalle-btn"
+                                    @onclick="@(() => VerDetalle(pedido.IdPedido))">
+                                Ver Detalle
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>
 
 @code {
 
+    public class PedidoView
+    {
+        public int IdPedido { get; set; }
+        public DateTime Fecha { get; set; }
+        public decimal Total { get; set; }
+        public string Estado { get; set; } = "Pendiente";
+    }
+
+    // 🔥 Datos de ejemplo (luego lo cambias por tu API)
+    List<PedidoView> pedidos = new()
+    {
+        new PedidoView { IdPedido = 1, Fecha = DateTime.Now.AddDays(-2), Total = 215000, Estado = "Completado" },
+        new PedidoView { IdPedido = 2, Fecha = DateTime.Now.AddDays(-1), Total = 85000, Estado = "En Camino" },
+        new PedidoView { IdPedido = 3, Fecha = DateTime.Now, Total = 120000, Estado = "Pendiente" }
+    };
+
+    string GetEstadoClase(string estado)
+    {
+        return estado switch
+        {
+            "Completado" => "estado-completado",
+            "En Camino" => "estado-envio",
+            "Pendiente" => "estado-pendiente",
+            _ => ""
+        };
+    }
+
+    void VerDetalle(int id)
+    {
+        nav.NavigateTo($"/pedidoDetalle/{id}");
+    }
 }

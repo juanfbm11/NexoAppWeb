@@ -1,0 +1,67 @@
+.pedido-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.titulo {
+    font-weight: bold;
+    color: #ffce3a;
+    margin-bottom: 25px;
+}
+
+.no-pedidos {
+    text-align: center;
+    margin-top: 60px;
+    padding: 30px;
+    background: #222;
+    color: #fff;
+    border-radius: 10px;
+}
+
+.pedido-tabla {
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+    .pedido-tabla th {
+        font-weight: bold;
+    }
+
+    .pedido-tabla td {
+        vertical-align: middle;
+    }
+
+.detalle-btn {
+    background: #ffce3a;
+    border: none;
+    font-weight: 600;
+    border-radius: 8px;
+    padding: 6px 14px;
+    transition: 0.2s;
+}
+
+    .detalle-btn:hover {
+        background: #e0b430;
+    }
+
+/* Estados de pedido */
+.estado {
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-weight: bold;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.estado-completado {
+    background: #28a745;
+}
+
+.estado-envio {
+    background: #007bff;
+}
+
+.estado-pendiente {
+    background: #ffc107;
+}
