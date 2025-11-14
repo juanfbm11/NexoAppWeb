@@ -1,37 +1,37 @@
-html, body {
-    height:100%;
+﻿html, body {
+    height: 100%;
     margin: 0;
     font-family: 'Poppins', sans-serif;
-    /* Fondo oscuro para la sensaci�n urbana y de alto contraste */
-    background-color: #111;
+    background-color: #111; /* Fondo oscuro elegante */
     color: #fff;
 }
+
 .app-container {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Hace que ocupe toda la pantalla */
+    min-height: 100vh;
 }
 
 .main-content {
-    flex: 1; /* Empuja el footer hacia abajo */
-    
+    flex: 1;
 }
 
 footer {
-    background-color: #222; /* color de fondo del footer */
+    background-color: #222;
     color: white;
-    text-align:left;
-    padding: 10px ;
+    text-align: left;
+    padding: 10px;
 }
 
-/* SECCI�N PRINCIPAL */
+/* ===========================
+   SECCIÓN PRINCIPAL - HOME
+=========================== */
 .Home {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    padding: 80px 40px;
-    /* Fondo con un sutil degradado a negro */
+    padding: 60px 30px; /* Más compacto */
     background: linear-gradient(135deg, #1f1f1f, #000000);
     border-radius: 0 0 40px 40px;
     box-shadow: 0 10px 30px rgba(255, 215, 0, 0.1);
@@ -44,55 +44,131 @@ footer {
     max-width: 550px;
 }
 
-    .home-content h1 {
-        font-size: 3.5rem;
-        font-weight: 900;
-        color: #fff;
-        line-height: 1.1;
-        text-transform: uppercase;
-    }
+/* 🔥 Tamaño reducido del encabezado */
+.home-content h1 {
+    font-size: 2.3rem; /* antes 3.5rem */
+    font-weight: 900;
+    color: #fff;
+    line-height: 1.1;
+    text-transform: uppercase;
+}
 
-        .home-content h1 span {
-            color: #FFD700;
-            background-color: transparent;
-            /* Efecto de "doble subrayado" moderno */
-            border-bottom: 6px double #FFD700;
-            padding-bottom: 5px;
-        }
+.home-content h1 span {
+    color: #FFD700;
+    border-bottom: 6px double #FFD700;
+    padding-bottom: 5px;
+}
 
-    .home-content p {
-        font-size: 1.2rem;
-        margin: 25px 0;
-        color: #bbb;
-    }
+.home-content p {
+    font-size: 1rem; /* antes 1.2rem */
+    margin: 18px 0;
+    color: #bbb;
+}
 
+/* BOTÓN */
 .btn-explorar {
     background-color: #FFD700;
     color: #111;
-    padding: 15px 40px;
+    padding: 14px 35px;
     border-radius: 5px;
     text-decoration: none;
     font-weight: 800;
     letter-spacing: 1px;
     transition: all 0.3s;
-    /* Sombra de acento para que "flote" */
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
-    .btn-explorar:hover {
-        background-color: #ffe84d;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
-    }
-
-.home-img {
-    width: 450px;
-    border-radius: 15px;
-    /* Sombra fuerte sobre el fondo oscuro */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+.btn-explorar:hover {
+    background-color: #ffe84d;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
 }
 
-/* SECCI�N DE PRODUCTOS */
+/* IMAGEN */
+.home-img {
+    width: 220px;
+    max-width: 40%;
+    height: auto;
+    margin-left: 30px;
+    filter: drop-shadow(0px 0px 8px rgba(255, 255, 255, 0.4));
+}
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 80px 50px;
+    background: radial-gradient(circle at top left, #1f1f1f, #000);
+    border-bottom: 5px solid #FFD700;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+.hero-content {
+    max-width: 520px;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+    .hero-title .marca {
+        color: #FFD700;
+        display: block;
+        letter-spacing: 2px;
+        font-size: 3.5rem;
+    }
+
+    .hero-title .subtitle {
+        display: block;
+        text-transform: uppercase;
+        font-size: 2rem;
+    }
+
+.hero-text {
+    margin: 20px 0;
+    font-size: 1.15rem;
+    color: #ccc;
+}
+
+.hero-image-container {
+    position: relative;
+}
+
+.hero-img {
+    width: 260px;
+    filter: drop-shadow(0 0 12px rgba(255,255,255,.5));
+    animation: float 4s ease-in-out infinite;
+}
+
+.glow {
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255,215,0,0.25), transparent);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+/* ===========================
+   PRODUCTOS
+=========================== */
 .productos {
     padding: 80px 20px;
     text-align: center;
@@ -107,22 +183,22 @@ footer {
     flex-wrap: wrap;
 }
 
-    .productos-header h2 {
-        font-size: 2.8rem;
-        font-weight: 800;
-        margin-bottom: 50px;
-        color: #fff;
-    }
+.productos-header h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin-bottom: 50px;
+    color: #fff;
+}
 
-        .productos-header h2::after {
-            content: '';
-            display: block;
-            width: 100px;
-            height: 5px;
-            background-color: #FFD700;
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
+.productos-header h2::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 5px;
+    background-color: #FFD700;
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
 
 .btn-nuevo {
     background-color: #FFD700;
@@ -135,13 +211,13 @@ footer {
     box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
 }
 
-    .btn-nuevo:hover {
-        background-color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
-    }
+.btn-nuevo:hover {
+    background-color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 215, 0, 0.6);
+}
 
-/* GRID DE PRODUCTOS */
+/* GRID */
 .grid-productos {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -150,7 +226,9 @@ footer {
     margin: 0 auto;
 }
 
-/* TARJETAS DE PRODUCTO */
+/* ===========================
+   TARJETA DE PRODUCTO
+=========================== */
 .card-producto {
     background-color: #1f1f1f;
     border-radius: 10px;
@@ -162,11 +240,11 @@ footer {
     flex-direction: column;
 }
 
-    .card-producto:hover {
-        transform: scale(1.03);
-        box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px #FFD700;
-        border: 1px solid #FFD700;
-    }
+.card-producto:hover {
+    transform: scale(1.03);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 15px #FFD700;
+    border: 1px solid #FFD700;
+}
 
 .img-container {
     background-color: #111;
@@ -174,11 +252,11 @@ footer {
     padding: 1rem;
 }
 
-    .img-container img {
+.img-container img {
     width: 100%;
     height: 250px;
     object-fit: cover;
-        opacity: 0.85;
+    opacity: 0.85;
     transition: opacity 0.3s;
 }
 
@@ -186,7 +264,7 @@ footer {
     opacity: 1;
 }
 
-/* INFORMACI�N DEL PRODUCTO */
+/* INFO PRODUCTO */
 .info {
     padding: 25px;
     text-align: left;
@@ -196,20 +274,20 @@ footer {
     height: 100%;
 }
 
-    .info h3 {
-        font-size: 1.3rem;
-        font-weight: 700;
-        color: #FFD700;
-        margin-bottom: 8px;
-    }
+.info h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 8px;
+}
 
 .descripcion {
-        color: #999;
-        font-size: 0.9rem;
-        margin-bottom: 20px;
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
     height: 45px;
     overflow: hidden;
-    }
+}
 
 .precio-boton {
     display: flex;
@@ -239,13 +317,15 @@ footer {
     gap: 5px;
 }
 
-    .btn-agregar:hover {
-        background-color: #fff;
-        transform: translateY(-2px);
-        box-shadow: 0 0 10px #FFD700;
-    }
+.btn-agregar:hover {
+    background-color: #fff;
+    transform: translateY(-2px);
+    box-shadow: 0 0 10px #FFD700;
+}
 
-/* ESTADOS */
+/* ===========================
+   ESTADOS
+=========================== */
 .loading, .empty {
     text-align: center;
     color: #bbb;
@@ -253,21 +333,20 @@ footer {
     padding: 2rem;
 }
 
-/* RESPONSIVE */
+/* ===========================
+   RESPONSIVE
+=========================== */
 @media (max-width: 768px) {
-    .Home {
-        flex-direction: column;
-        text-align: center;
-        padding: 60px 20px;
-    }
 
     .home-content h1 {
-        font-size: 2.5rem;
+        font-size: 2rem; /* también más pequeño en móvil */
     }
 
     .home-img {
-        width: 100%;
-        max-width: 380px;
+        width: 150px;
+        max-width: 60%;
+        margin: 20px auto 0;
+        display: block;
     }
 
     .productos-header {

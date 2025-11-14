@@ -5,18 +5,33 @@
 
 <link href="css/Home.css" rel="stylesheet" />
 
-<div class="Home">
-    <div class="home-content">
-        <h1><span class="marca">NEXO</span>  Conecta con lo mejor</h1>
-        <p>Explora productos únicos con estilo, tecnología y precio justo.</p>
-        <a href="#productos" class="btn-explorar">Explorar ahora</a>
-    </div>
-    <img src="/IMAGENES/Logo_Nexo.png" alt="Banner NEXO" class="home-img" />
-</div>
+<!-- HERO PRINCIPAL -->
+<header class="hero">
+    <div class="hero-content">
+        <h1 class="hero-title">
+            <span class="marca">NEXO</span>
+            <span class="subtitle">Conecta con lo mejor</span>
+        </h1>
 
+        <p class="hero-text">
+            Productos seleccionados con estilo, tecnología y precio justo para ti.
+        </p>
+
+        <a href="#productos" class="btn-explorar">
+            Explorar ahora
+        </a>
+    </div>
+
+    <div class="hero-image-container">
+        <img src="/IMAGENES/Logo_Nexo.png" alt="Logo NEXO" class="hero-img" />
+        <div class="glow"></div>
+    </div>
+</header>
+
+<!-- SECCIÓN DE PRODUCTOS -->
 <section id="productos" class="productos">
     <div class="productos-header">
-    <h2>Productos destacados</h2>
+        <h2>Productos destacados</h2>
         <a class="btn-nuevo" href="/Home/CrearProducto">+ Añadir producto</a>
     </div>
 
@@ -31,25 +46,27 @@
     else
     {
         <div class="grid-productos">
-        @foreach (var producto in productos)
-        {
+            @foreach (var producto in productos)
+            {
                 <div class="card-producto">
                     <div class="img-container">
                         <img src="@producto.Imagen" alt="@producto.Nombre" />
                     </div>
+
                     <div class="info">
-                    <h3>@producto.Nombre</h3>
+                        <h3>@producto.Nombre</h3>
                         <p class="descripcion">@producto.Descripcion</p>
+
                         <div class="precio-boton">
                             <span class="precio">$@producto.Precio.ToString("N0")</span>
                             <button class="btn-agregar" @onclick="() => AgregarAlCarrito(producto)">
                                 Agregar 🛒
-                        </button>
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
-    </div>
+            }
+        </div>
     }
 </section>
 
@@ -59,16 +76,15 @@
     protected override async Task OnInitializedAsync()
     {
         try
-    {
+        {
             productos = await Service.GetAllAsync();
-    }
+        }
         catch (Exception ex)
-    {
+        {
             Console.WriteLine($"Error al cargar productos: {ex.Message}");
         }
     }
 
-    // Método para agregar al carrito
     private void AgregarAlCarrito(Producto producto)
     {
         Console.WriteLine($"🛒 Producto agregado al carrito: {producto.Nombre}");
