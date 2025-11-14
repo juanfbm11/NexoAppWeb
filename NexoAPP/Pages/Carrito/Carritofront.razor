@@ -1,10 +1,78 @@
-﻿@page "/Carrito"
+﻿@page "/carrito"
+@using System.Linq
+@inject NavigationManager nav
 
-<h2>
-    ESTE ES EL CARRITO
-</h2>
+<link href="css/Carrito.css" rel="stylesheet" />
 
+<div class="cart-container">
+    <h2>🛒 Carrito de Compras</h2>
+
+    @if (productos.Count == 0)
+    {
+        <div class="cart-empty">
+            <p>Tu carrito está vacío 😔</p>
+            <a href="/" class="btn btn-warning">Seguir Comprando</a>
+        </div>
+    }
+    else
+    {
+        <div class="cart-items">
+            @foreach (var producto in productos)
+            {
+                <div class="cart-item">
+                    <img src="@producto.Imagen" alt="@producto.Nombre" />
+                    <div class="item-info">
+                        <h5>@producto.Nombre</h5>
+                        <p class="price">$@producto.Precio</p>
+
+                        <div class="item-actions">
+                            <button class="btn quantity" @onclick="@(() => DisminuirCantidad(producto))">-</button>
+                            <span>@producto.Cantidad</span>
+                            <button class="btn quantity" @onclick="@(() => AumentarCantidad(producto))">+</button>
+
+                            <button class="btn remove" @onclick="@(() => EliminarProducto(producto))">🗑️</button>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+
+        <div class="cart-summary">
+            <h4>Total: <span>$@Total</span></h4>
+
+            <button class="btn checkout" @onclick="IrAPago">
+                Finalizar Compra
+            </button>
+        </div>
+    }
+</div>
 
 @code {
+    public class Producto
+    {
+        public string Nombre { get; set; }
+        public string Imagen { get; set; }
+        public decimal Precio { get; set; }
+        public int Cantidad { get; set; }
+    }
 
+    List<Producto> productos = new()
+    {
+        new Producto { Nombre = "Auriculares Bluetooth", Imagen = "/imagenes/Playstation5.jpg", Precio = 120000, Cantidad = 1 },
+        new Producto { Nombre = "Smartwatch", Imagen = "/imagenes/Vans.jpg", Precio = 230000, Cantidad = 2 }
+    };
+
+    decimal Total => productos.Sum(p => p.Precio * p.Cantidad);
+
+    void AumentarCantidad(Producto p) => p.Cantidad++;
+
+    void DisminuirCantidad(Producto p)
+    {
+        if (p.Cantidad > 1)
+            p.Cantidad--;
+    }
+
+    void EliminarProducto(Producto p) => productos.Remove(p);
+
+    void IrAPago() => nav.NavigateTo("/Pago");
 }
