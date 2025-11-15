@@ -1,0 +1,45 @@
+﻿@page "/categoria"
+
+<link href="css/Categoria.css" rel="stylesheet" />
+
+<div class="categorias-panel">
+
+    <div class="panel-header">
+        <div>
+            <h2 class="titulo">📦 Categorías</h2>
+            <p class="subtitulo">Gestiona y visualiza todas las categorías disponibles.</p>
+        </div>
+
+        <button class="btn-primary-dark">
+            <i class="bi bi-plus-circle"></i> Nueva Categoría
+        </button>
+    </div>
+
+    <div class="grid-categorias">
+
+        @foreach (var categoria in categorias)
+        {
+            <div class="categoria-card">
+                <h3>@categoria</h3>
+            </div>
+        }
+
+    </div>
+
+</div>
+
+@code {
+    private List<string> categorias = new()
+    {
+        "Ropa",
+        "Calzado",
+        "Accesorios",
+        "Tecnología",
+        "Hogar",
+        "Belleza",
+        "Deportes",
+        "Juguetes",
+        "Mascotas",
+        "Otros"
+    };
+}

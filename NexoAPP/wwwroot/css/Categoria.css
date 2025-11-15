@@ -1,0 +1,64 @@
+.categorias-panel {
+    background: #121212;
+    min-height: 100vh;
+    padding: 30px;
+    color: white;
+}
+
+/* ENCABEZADO */
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.titulo {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.subtitulo {
+    color: #bbbbbb;
+}
+
+/* BOTÓN PRINCIPAL */
+.btn-primary-dark {
+    background: #4f8cff;
+    color: white;
+    padding: 10px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+    .btn-primary-dark:hover {
+        background: #74a8ff;
+    }
+
+/* GRID DE CATEGORÍAS */
+.grid-categorias {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+/* TARJETA */
+.categoria-card {
+    background: #1e1e1e;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+    border: 1px solid #2a2a2a;
+}
+
+    .categoria-card:hover {
+        background: #272727;
+        transform: translateY(-3px);
+    }

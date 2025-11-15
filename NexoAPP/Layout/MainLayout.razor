@@ -42,7 +42,7 @@
                         <a class="nav-link" href="#">Productos</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Categorías</a>
+                        <button class="nav-link" @onclick="IrCategorias">Categorías</button>
                     </li>
                     <li class="nav-item">
                         <button class="nav-link" @onclick="IrPedido">Pedidos</button>
@@ -130,5 +130,8 @@
     {
         Navigation.NavigateTo("/Pedido");
 }
-
+    private void IrCategorias()
+    {
+        Navigation.NavigateTo("/categoria");
+    }
 }
